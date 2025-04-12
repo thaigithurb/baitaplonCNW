@@ -253,15 +253,16 @@ a {
 /* end footer  */
 
 /*===================== About  =================== */
-.hero-about {
-  background-color: rgb(243, 242, 242);
-}
-.mission {
-  background-color: rgb(243, 242, 242);
-}
+.hero-about,
+.mission,
 .why {
-  background-color: rgb(243, 242, 242);
+  background-color: #f8f9fa;
 }
+
+.story-img {
+  border-radius: 10px;
+}
+
 .mission-list {
   padding: 30px 0;
 }
