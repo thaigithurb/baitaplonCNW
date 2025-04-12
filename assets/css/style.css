@@ -294,3 +294,18 @@ a {
   align-items: center;
   height: 60%;
 }
+
+/* login */
+form {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.login {
+  background-color: #f6f6f6;
+}
+
+.login-form {
+  background-color: white;
+}

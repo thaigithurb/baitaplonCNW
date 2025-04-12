@@ -18,6 +18,133 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    
+    <!-- header -->
+    <header class="header">
+      <div class="container">
+        <div class="wrap">
+          <a href="#" class="logo"> ShoeStore </a>
+          <nav class="menu">
+            <ul class="menu-list">
+              <li class="menu-item">
+                <a href=""> Home </a>
+              </li>
+              <li class="menu-item">
+                <a href=""> Products </a>
+              </li>
+              <li class="menu-item">
+                <a href=""> About </a>
+              </li>
+              <li class="menu-item">
+                <a href=""><strong> Login </strong></a>
+              </li>
+              <li class="menu-item">
+                <a href=""> Register </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+    <!-- Section Login-->
+    <section class="login">
+      <div class="container">
+        <form action="">
+          <section class="login-form shadow-sm p-5 mt-5 mb-5 rounded">
+            <div class="container">
+              <form action="login_process.php" method="POST">
+                <h2 class="text-center mb-4">Login to Your Account</h2>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="mb-3 form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="rememberMe"
+                    name="rememberMe"
+                  />
+                  <label class="form-check-label" for="rememberMe"
+                    >Remember me</label
+                  >
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                  Login
+                </button>
+                <div class="text-center mt-3">
+                  <a href="#" class="text-decoration-none">Forgot password?</a>
+                </div>
+                <hr />
+                <div class="text-center">
+                  Don't have an account?
+                  <a href="register.html" class="text-decoration-none"
+                    >Register here</a
+                  >
+                </div>
+              </form>
+            </div>
+          </section>
+        </form>
+      </div>
+    </section>
+
+    <!-- footer  -->
+    <footer class="footer py-5 bg-dark text-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <h5>About ShoeStore</h5>
+            <p>
+              Your premium destination for the latest footwear trends and
+              styles.
+            </p>
+          </div>
+          <div class="col-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="register.html">Register</a></li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+              <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
+                City
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end footer  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
