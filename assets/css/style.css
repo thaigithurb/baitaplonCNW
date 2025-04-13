@@ -295,3 +295,23 @@ a {
   align-items: center;
   height: 60%;
 }
+
+/* login */
+.login {
+  background-color: #f8f9fa;
+}
+
+.login-form {
+  background-color: white;
+}
+/* end login  */
+
+/* register  */
+.register {
+  background-color: #f8f9fa;
+}
+
+.register-form {
+  background-color: white;
+}
+/* end register  */
