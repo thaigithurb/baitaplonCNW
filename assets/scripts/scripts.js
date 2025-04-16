@@ -1,11 +1,12 @@
 import { auth, db } from "./firebaseConfig.js";
-import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { ref, set } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
 
 // login, regist 
 const registerForm = document.querySelector(".register-form");
 const loginForm = document.querySelector(".login-form");
+const authLink = document.querySelector("#auth-link");
 
 if (registerForm) {
     registerForm.addEventListener("submit", (e) => {
@@ -66,3 +67,29 @@ if (loginForm) {
     })
 }
 // end login, regist 
+
+// auth state change 
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        const uid = user.uid;
+        authLink.textContent = "Logout";
+        authLink.href = "#"
+        authLink.addEventListener("click", () => {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                // Sign-out successful.
+            }).catch((error) => {
+                // An error happened.
+            });
+        })
+
+    } else {
+        // User is signed out
+        // ...
+        authLink.textContent = "Login";
+        authLink.href = "login.html"
+    }
+});
+
+// end auth state change 
