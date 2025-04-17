@@ -56,6 +56,7 @@ a {
 .modal-title {
   font-size: 25px;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .pay-month, .pay-year {
@@ -83,16 +84,14 @@ a {
   font-size: 28px;
 }
 
-.visa-payment, i {
+.visa-payment, .visa-payment i {
   color: rgb(5, 5, 167);
 }
 
 
-.credit-payment i {
+.credit-payment, .credit-payment i {
   color: rgb(212, 108, 16);
 }
-
-
 
 
 /* end header  */
