@@ -1,237 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>About ShoesShop</title>
-  </head>
-  <body>
-    <!-- header -->
-    <header class="header">
-      <div class="container">
-        <div class="wrap">
-          <a href="index.html" class="logo"> ShoeStore </a>
-          <nav class="menu">
-            <ul class="menu-list">
-              <li class="menu-item">
-                <a href="index.html"> Home </a>
-              </li>
-              <li class="menu-item">
-                <a href="products.html"> Products </a>
-              </li>
-              <li class="menu-item">
-                <a href="about.html"><strong> About </strong></a>
-              </li>
-              <li class="menu-item">
-                <a href="login.html" id="auth-link"> Login </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- end header -->
-    <!-- section hero -->
-    <section class="hero-about">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="title col-7">
-            <h1 class="fw-bold display-4">About ShoeStore</h1>
-            <p class="fw-lighter lead">
-              Your premium destination for the latest footwear trends and
-              styles.
-            </p>
-          </div>
-          <div class="col-5">
-            <img
-              class="img-fluid rounded"
-              src="./assets/images/about-img/hero.jpg"
-              alt="About ShoeStore"
-              class="img-fluid rounded"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end section hero -->
 
-    <!-- section story -->
-    <section class="story">
-      <div class="container">
-        <div class="row">
-          <div class="col-6 story-text">
-            <h1>Our Story</h1>
-            <p>
-              Founded by a passionate team of young entrepreneurs, we are
-              committed to delivering footwear that blends comfort, quality, and
-              timeless style. Every pair is thoughtfully selected and crafted to
-              support not just your feet, but your lifestyle
-            </p>
-            <p>
-              We believe that a great pair of shoes does more than complete your
-              outfit — it carries your story, your journey, and your confidence
-              with every step.
-            </p>
-          </div>
-          <div class="col-6">
-            <img
-              class="img-fluid rounded"
-              src="./assets/images/about-img/story.jpg"
-              alt="About story"
-            />
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>About ShoesShop</title>
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+    <div class="container">
+      <div class="wrap">
+        <a href="index.html" class="logo"> ShoeStore </a>
+        <nav class="menu">
+          <ul class="menu-list align-items-center">
+            <button type="button" class="btn btn-secondary btn-pro" data-bs-toggle="modal"
+              data-bs-target="#upgradeProModal">
+              Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
+            </button>
+            <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <form action="" class="payment-form">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Be a membership! <i
+                          class="fa-solid fa-crown text-warning"></i></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="pay-month">
+                          $7.50/Month
+                        </div>
+                        <div class="pay-year">
+                          $22.49/Year
+                        </div>
+                      </div>
+                      <div class="d-flex gap-3">
+                        <div class="visa-payment mt-3">
+                          <input type="radio" id="visa-payment" name="payment-method"
+                            style="width: 18px; height: 18px;" />
+                          <label for="visa-payment">
+                            <i class="fa-brands fa-cc-visa"></i>
+                          </label>
+                        </div>
+                        <div class="credit-payment mt-3">
+                          <input type="radio" id="credit-payment" name="payment-method"
+                            style="width: 18px; height: 18px;" />
+                          <label for="credit-payment">
+                            <i class="fa-solid fa-credit-card"></i>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="width: 100%;">
+                      <button type="submit" class="btn btn-primary w-100">Pay</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <li class="menu-item">
+              <a href="index.html"> Home </a>
+            </li>
+            <li class="menu-item">
+              <a href="products.html"> Products </a>
+            </li>
+            <li class="menu-item">
+              <a href="about.html"><strong> About </strong></a>
+            </li>
+            <li class="menu-item">
+              <a href="login.html" id="auth-link"> Login </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </section>
-    <!-- end section story -->
-    <!-- section mission -->
-    <section class="mission">
-      <div class="container">
-        <div
-          class="mission-text d-flex flex-column align-items-center justify-content-center"
-        >
-          <h2>Our Mission</h2>
-          <p class="lead">
-            "We’re not just selling shoes — we’re shaping the way you move."
+    </div>
+  </header>
+  <!-- end header -->
+  <!-- section hero -->
+  <section class="hero-about">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="title col-7">
+          <h1 class="fw-bold display-4">About ShoeStore</h1>
+          <p class="fw-lighter lead">
+            Your premium destination for the latest footwear trends and
+            styles.
           </p>
         </div>
-        <div class="mission-list d-flex justify-content-between mt-4">
-          <div class="item item1">
-            <i class="fas fa-check fa-3x mb-3 text-success"></i>
-            <h3 class="fw-bold">Quality</h3>
-            <p>
-              Every pair of shoes we sell is crafted with precision, using
-              high-quality materials to ensure durability and longevity.
-            </p>
-          </div>
-          <div class="item item2">
-            <i class="fas fa-heart fa-3x mb-3 text-danger"></i>
-            <h3 class="fw-bold">Comfort</h3>
-            <p>
-              Our shoes are designed to keep your feet comfortable and
-              supported, no matter the occasion.
-            </p>
-          </div>
-          <div class="item item3">
-            <i class="fas fa-star fa-3x mb-3 text-warning"></i>
-            <h3 class="fw-bold">Style</h3>
-            <p>
-              OFrom classic to trendy, our styles cater to your unique taste.
-            </p>
-          </div>
+        <div class="col-5">
+          <img class="img-fluid rounded" src="./assets/images/about-img/hero.jpg" alt="About ShoeStore"
+            class="img-fluid rounded" />
         </div>
       </div>
-    </section>
-    <!-- end section mission -->
+    </div>
+  </section>
+  <!-- end section hero -->
 
-    <!-- section team -->
-    <section class="team">
-      <div class="container">
-        <h2 class="text-center">Our Team</h2>
-        <div class="row d-flex justify-content-around">
-          <div class="member col-5">
-            <img
-              class="rounded-circle"
-              src="./assets/images/about-img/Thai.jpg"
-              alt="Luong Viet Thai"
-            />
-            <h2>Lương Việt Thái</h2>
-          </div>
-          <div class="member col-5">
-            <img
-              class="rounded-circle"
-              src="./assets/images/about-img/Dat.jpg"
-              alt="Pham Tan DatDat"
-            />
-            <h2>Phạm Tấn Đạt</h2>
-          </div>
+  <!-- section story -->
+  <section class="story">
+    <div class="container">
+      <div class="row">
+        <div class="col-6 story-text">
+          <h1>Our Story</h1>
+          <p>
+            Founded by a passionate team of young entrepreneurs, we are
+            committed to delivering footwear that blends comfort, quality, and
+            timeless style. Every pair is thoughtfully selected and crafted to
+            support not just your feet, but your lifestyle
+          </p>
+          <p>
+            We believe that a great pair of shoes does more than complete your
+            outfit — it carries your story, your journey, and your confidence
+            with every step.
+          </p>
+        </div>
+        <div class="col-6">
+          <img class="img-fluid rounded" src="./assets/images/about-img/story.jpg" alt="About story" />
         </div>
       </div>
-    </section>
-    <!-- end section team -->
+    </div>
+  </section>
+  <!-- end section story -->
+  <!-- section mission -->
+  <section class="mission">
+    <div class="container">
+      <div class="mission-text d-flex flex-column align-items-center justify-content-center">
+        <h2>Our Mission</h2>
+        <p class="lead">
+          "We’re not just selling shoes — we’re shaping the way you move."
+        </p>
+      </div>
+      <div class="mission-list d-flex justify-content-between mt-4">
+        <div class="item item1">
+          <i class="fas fa-check fa-3x mb-3 text-success"></i>
+          <h3 class="fw-bold">Quality</h3>
+          <p>
+            Every pair of shoes we sell is crafted with precision, using
+            high-quality materials to ensure durability and longevity.
+          </p>
+        </div>
+        <div class="item item2">
+          <i class="fas fa-heart fa-3x mb-3 text-danger"></i>
+          <h3 class="fw-bold">Comfort</h3>
+          <p>
+            Our shoes are designed to keep your feet comfortable and
+            supported, no matter the occasion.
+          </p>
+        </div>
+        <div class="item item3">
+          <i class="fas fa-star fa-3x mb-3 text-warning"></i>
+          <h3 class="fw-bold">Style</h3>
+          <p>
+            OFrom classic to trendy, our styles cater to your unique taste.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end section mission -->
 
-    <!-- section why -->
-    <section class="why">
-      <div class="container">
-        <h3 class="text-center">Why Choose Us</h3>
-        <div class="why-list d-flex justify-content-between mt-5">
-          <div class="item item1">
-            <i class="fas fa-truck fa-3x mb-3 text-primary"></i>
-            <h3 class="fw-bold">Fast Delevery</h3>
-            <p>
-              We offer quick and reliable shipping to get your shoes to you as
-              soon as possible.
-            </p>
-          </div>
-          <div class="item item2">
-            <i class="fas fa-undo fa-3x mb-3 text-primary"></i>
-            <h3 class="fw-bold">Easy Returns</h3>
-            <p>
-              Not satisfied? Our hassle-free return policy makes it easy to
-              return your purchase.
-            </p>
-          </div>
-          <div class="item item3">
-            <i class="fas fa-headset fa-3x mb-3 text-primary"></i>
-            <h3 class="fw-bold">24/7 Support</h3>
-            <p>
-              Our customer service team is always ready to help you with any
-              questions or concerns.
-            </p>
-          </div>
+  <!-- section team -->
+  <section class="team">
+    <div class="container">
+      <h2 class="text-center">Our Team</h2>
+      <div class="row d-flex justify-content-around">
+        <div class="member col-5">
+          <img class="rounded-circle" src="./assets/images/about-img/Thai.jpg" alt="Luong Viet Thai" />
+          <h2>Lương Việt Thái</h2>
+        </div>
+        <div class="member col-5">
+          <img class="rounded-circle" src="./assets/images/about-img/Dat.jpg" alt="Pham Tan DatDat" />
+          <h2>Phạm Tấn Đạt</h2>
         </div>
       </div>
-    </section>
-    <!-- end section why -->
-    <!-- footer -->
-    <footer class="footer py-5 bg-dark text-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-4">
-            <h5>About ShoeStore</h5>
-            <p>
-              Your premium destination for the latest footwear trends and
-              styles.
-            </p>
-          </div>
-          <div class="col-4">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="products.html">Products</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="register.html">Register</a></li>
-            </ul>
-          </div>
-          <div class="col-4">
-            <h5>Contact Us</h5>
-            <ul class="list-unstyled">
-              <li><i class="fas fa-phone"></i> +1 234 567 890</li>
-              <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
-                City
-              </li>
-            </ul>
-          </div>
+    </div>
+  </section>
+  <!-- end section team -->
+
+  <!-- section why -->
+  <section class="why">
+    <div class="container">
+      <h3 class="text-center">Why Choose Us</h3>
+      <div class="why-list d-flex justify-content-between mt-5">
+        <div class="item item1">
+          <i class="fas fa-truck fa-3x mb-3 text-primary"></i>
+          <h3 class="fw-bold">Fast Delevery</h3>
+          <p>
+            We offer quick and reliable shipping to get your shoes to you as
+            soon as possible.
+          </p>
+        </div>
+        <div class="item item2">
+          <i class="fas fa-undo fa-3x mb-3 text-primary"></i>
+          <h3 class="fw-bold">Easy Returns</h3>
+          <p>
+            Not satisfied? Our hassle-free return policy makes it easy to
+            return your purchase.
+          </p>
+        </div>
+        <div class="item item3">
+          <i class="fas fa-headset fa-3x mb-3 text-primary"></i>
+          <h3 class="fw-bold">24/7 Support</h3>
+          <p>
+            Our customer service team is always ready to help you with any
+            questions or concerns.
+          </p>
         </div>
       </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="assets/scripts/firebaseConfig.js"></script>
-    <script type="module" src="assets/scripts/scripts.js"></script>
-  </body>
+    </div>
+  </section>
+  <!-- end section why -->
+  <!-- footer -->
+  <footer class="footer py-5 bg-dark text-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <h5>About ShoeStore</h5>
+          <p>
+            Your premium destination for the latest footwear trends and
+            styles.
+          </p>
+        </div>
+        <div class="col-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
+              City
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="assets/scripts/firebaseConfig.js"></script>
+  <script type="module" src="assets/scripts/scripts.js"></script>
+</body>
+
 </html>

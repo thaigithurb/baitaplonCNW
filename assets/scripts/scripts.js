@@ -1,13 +1,16 @@
 import { auth, db } from "./firebaseConfig.js";
 import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { ref, set } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+import { ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
 
-// login, regist 
 const registerForm = document.querySelector(".register-form");
 const loginForm = document.querySelector(".login-form");
 const authLink = document.querySelector("#auth-link");
+const newsletterForm = document.querySelector(".newsletter-form");
+let userId = null;
+const paymentForm = document.querySelector(".payment-form");
 
+// login, regist 
 if (registerForm) {
     registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -27,7 +30,8 @@ if (registerForm) {
                     set(ref(db, 'users/' + user.uid), {
                         username: firstName + " " + lastName,
                         email: email,
-                        phone: phone
+                        phone: phone,
+                        membership: false
                     })
                         .then(() => {
                             console.log("User data saved successfully.");
@@ -73,12 +77,28 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
         const uid = user.uid;
+        userId = uid;
         authLink.textContent = "Logout";
         authLink.href = "#"
         authLink.addEventListener("click", () => {
             const auth = getAuth();
             signOut(auth).then(() => {
                 // Sign-out successful.
+
+                // Show success alert
+
+                const logoutAlert = document.createElement("div");
+                logoutAlert.className = "alert alert-success";
+                logoutAlert.role = "alert";
+                logoutAlert.textContent = "You have successfully logged out!";
+                document.body.prepend(logoutAlert);
+
+                setTimeout(() => {
+                    logoutAlert.remove();
+                }, 1000);
+
+
+
             }).catch((error) => {
                 // An error happened.
             });
@@ -91,5 +111,25 @@ onAuthStateChanged(auth, (user) => {
         authLink.href = "login.html"
     }
 });
-
 // end auth state change 
+
+
+// select payment
+if (paymentForm) {
+    paymentForm.querySelectorAll(".pay-month, .pay-year").forEach((element) => {
+        element.addEventListener("click", () => {
+            // Check if the clicked element is pay-month
+            if (element.classList.contains("pay-month")) {
+                // Add 'selected-payment' class to pay-month and remove it from pay-year
+                document.querySelector(".pay-month").classList.add("selected");
+                document.querySelector(".pay-year").classList.remove("selected");
+            } else if (element.classList.contains("pay-year")) {
+                // Add 'selected-payment' class to pay-year and remove it from pay-month
+                document.querySelector(".pay-year").classList.add("selected");
+                document.querySelector(".pay-month").classList.remove("selected");
+            }
+        });
+    });
+}
+// end select payment
+

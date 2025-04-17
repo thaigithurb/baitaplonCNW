@@ -52,6 +52,49 @@ a {
   font-size: 24px;
   color: black;
 }
+
+.modal-title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.pay-month, .pay-year {
+  font-weight: 700;
+  font-size: 20px;
+  border: 1px solid black;
+  width: 50%;
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* .pay-month:hover , .pay-year:hover {
+  border: 1px solid green;
+  color: green;
+} */
+
+.pay-month.selected, .pay-year.selected {
+  border: 1px solid green;
+  color: green;
+}
+
+.visa-payment, .credit-payment {
+  font-size: 28px;
+}
+
+.visa-payment, i {
+  color: rgb(5, 5, 167);
+}
+
+
+.credit-payment i {
+  color: rgb(212, 108, 16);
+}
+
+
+
+
 /* end header  */
 
 /* section hero */
