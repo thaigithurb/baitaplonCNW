@@ -234,7 +234,7 @@ a {
 }
 
 .footer a:hover {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .footer h5 {
@@ -297,11 +297,13 @@ a {
 }
 
 /* login */
-.login {
+.login,
+.forget {
   background-color: #f8f9fa;
 }
 
-.login-form {
+.login-form,
+.forget-form {
   background-color: white;
 }
 /* end login  */
