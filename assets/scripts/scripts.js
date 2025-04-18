@@ -9,6 +9,7 @@ const authLink = document.querySelector("#auth-link");
 const newsletterForm = document.querySelector(".newsletter-form");
 let userId = null;
 const paymentForm = document.querySelector(".payment-form");
+const forgetForm = document.querySelector(".forget-form");
 
 // login, regist 
 if (registerForm) {
