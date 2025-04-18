@@ -133,3 +133,60 @@ if (paymentForm) {
 }
 // end select payment
 
+// reset password 
+if (forgetForm) {
+
+    let emailFound = false;
+
+    forgetForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                // Password reset email sent!
+                // ..
+
+                // checking email 
+                const userRef = ref(db, 'users/');
+                onValue(userRef, (snapshot) => {
+                    const data = snapshot.val();
+                    for (let key in data) {
+                        const user = data[key];
+
+                        // if found email 
+                        if (user.email === email) {
+                            const resetAlert = document.createElement("div");
+                            resetAlert.className = "alert alert-success";
+                            resetAlert.role = "alert";
+                            resetAlert.textContent = "Check your email to change password!";
+                            document.body.prepend(resetAlert);
+                            setTimeout(() => {
+                                resetAlert.remove();
+                            }, 1000);
+                            emailFound = true;
+                            break;
+                        }
+                    }
+                    // if email not found 
+                    if (!emailFound) {
+                        const resetAlert = document.createElement("div");
+                        resetAlert.className = "alert alert-danger";
+                        resetAlert.role = "alert";
+                        resetAlert.textContent = "Incorrect Email!";
+                        document.body.prepend(resetAlert);
+                        setTimeout(() => {
+                            resetAlert.remove();
+                        }, 1000);
+                    }
+                });
+
+            })
+            .catch((error) => {
+
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
+    })
+}
+// end reset password
