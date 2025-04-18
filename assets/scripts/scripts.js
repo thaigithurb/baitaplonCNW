@@ -1,5 +1,5 @@
 import { auth, db } from "./firebaseConfig.js";
-import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
 
