@@ -132,7 +132,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    <div class="filters-sidebar">
+                    <form class="filters-sidebar">
                         <h4 class="mb-4">Filters</h4>
 
                         <!-- Category Filter -->
@@ -188,13 +188,14 @@
                         </div>
 
                         <button class="btn btn-primary w-100">Apply Filters</button>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-lg-9">
                     <div class="row g-4">
                         <!-- Product Card 1-->
                         <div class="col-md-4">
-                            <div class="card product-card">
+                            <div class="card product-card" data-category="men" data-price="99.99"
+                                data-sizes="8,9,10,11">
                                 <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
                                     class="card-img-top" alt="Product 1">
                                 <div class="card-body">
@@ -205,56 +206,61 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card product-card">
+                            <div class="card product-card" data-category="women" data-price="79.99"
+                                data-sizes="6,7,8,9">
                                 <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
                                     class="card-img-top" alt="Product 1">
                                 <div class="card-body">
-                                    <h5 class="card-title">Classic Sneaker</h5>
-                                    <p class="card-text">$99.99</p>
+                                    <h5 class="card-title">Women's Sneaker</h5>
+                                    <p class="card-text">$79.99</p>
                                     <a href="product-detail.html" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card product-card">
+                            <div class="card product-card" data-category="sports" data-price="129.99"
+                                data-sizes="9,10,11,12">
                                 <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
                                     class="card-img-top" alt="Product 1">
                                 <div class="card-body">
-                                    <h5 class="card-title">Classic Sneaker</h5>
-                                    <p class="card-text">$99.99</p>
+                                    <h5 class="card-title">Sports Running</h5>
+                                    <p class="card-text">$129.99</p>
                                     <a href="product-detail.html" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card product-card">
+                            <div class="card product-card" data-category="men" data-price="149.99"
+                                data-sizes="8,9,10,11">
                                 <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
                                     class="card-img-top" alt="Product 1">
                                 <div class="card-body">
-                                    <h5 class="card-title">Classic Sneaker</h5>
-                                    <p class="card-text">$99.99</p>
+                                    <h5 class="card-title">Men's Casual</h5>
+                                    <p class="card-text">$149.99</p>
                                     <a href="product-detail.html" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card product-card">
+                            <div class="card product-card" data-category="women" data-price="89.99"
+                                data-sizes="6,7,8,9">
                                 <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
                                     class="card-img-top" alt="Product 1">
                                 <div class="card-body">
-                                    <h5 class="card-title">Classic Sneaker</h5>
-                                    <p class="card-text">$99.99</p>
+                                    <h5 class="card-title">Women's Casual</h5>
+                                    <p class="card-text">$89.99</p>
                                     <a href="product-detail.html" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card product-card">
+                            <div class="card product-card" data-category="sports" data-price="199.99"
+                                data-sizes="9,10,11,12">
                                 <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
                                     class="card-img-top" alt="Product 1">
                                 <div class="card-body">
-                                    <h5 class="card-title">Classic Sneaker</h5>
-                                    <p class="card-text">$99.99</p>
+                                    <h5 class="card-title">Premium Sports</h5>
+                                    <p class="card-text">$199.99</p>
                                     <a href="product-detail.html" class="btn btn-primary">View Details</a>
                                 </div>
                             </div>
@@ -316,6 +322,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="assets/scripts/firebaseConfig.js"></script>
     <script type="module" src="assets/scripts/scripts.js"></script>
+    <script src="assets/scripts/productFilter.js"></script>
 </body>
 
 </html>
