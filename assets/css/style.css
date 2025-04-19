@@ -15,6 +15,14 @@ a {
 }
 
 /* header */
+header {
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
 .header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
@@ -59,7 +67,8 @@ a {
   text-transform: capitalize;
 }
 
-.pay-month, .pay-year {
+.pay-month,
+.pay-year {
   font-weight: 700;
   font-size: 20px;
   border: 1px solid black;
@@ -75,24 +84,26 @@ a {
   color: green;
 } */
 
-.pay-month.selected, .pay-year.selected {
+.pay-month.selected,
+.pay-year.selected {
   border: 1px solid green;
   color: green;
 }
 
-.visa-payment, .credit-payment {
+.visa-payment,
+.credit-payment {
   font-size: 28px;
 }
 
-.visa-payment, .visa-payment i {
+.visa-payment,
+.visa-payment i {
   color: rgb(5, 5, 167);
 }
 
-
-.credit-payment, .credit-payment i {
+.credit-payment,
+.credit-payment i {
   color: rgb(212, 108, 16);
 }
-
 
 /* end header  */
 
@@ -359,3 +370,17 @@ a {
   background-color: white;
 }
 /* end register  */
+
+/* product detail */
+.p-price {
+  padding-top: 10px;
+}
+.sale {
+  padding: 0px 7px;
+  border-radius: 5px;
+}
+
+.related-product {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
