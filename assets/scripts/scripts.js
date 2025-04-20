@@ -1,6 +1,6 @@
 import { auth, db } from "./firebaseConfig.js";
-import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail  } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
 
 const registerForm = document.querySelector(".register-form");
@@ -191,3 +191,56 @@ if (forgetForm) {
     })
 }
 // end reset password
+
+
+// subcribe newsletter 
+if (newsletterForm) {
+    newsletterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+
+        
+
+        const newSubcriberRef = push(ref(db, 'subcriber'));
+
+        set(newSubcriberRef, {
+            email: email,
+        })
+            .then(() => {
+                // Create alert element
+                const successAlert = document.createElement("div");
+                successAlert.className = "alert alert-success";
+                successAlert.role = "alert";
+                successAlert.textContent = "Thank you for subscribing. We will send you the latest updates";
+                
+                // Add alert to the page in a visible location
+                const newsletterSection = document.querySelector(".newsletter");
+                newsletterSection.insertBefore(successAlert, newsletterSection.firstChild);
+                
+                // Clear the form
+                e.target.reset();
+                
+                // Remove alert after 3 seconds
+                setTimeout(() => {
+                    successAlert.remove();
+                }, 3000);
+            })
+            .catch((error) => {
+                // Create error alert
+                const errorAlert = document.createElement("div");
+                errorAlert.className = "alert alert-danger";
+                errorAlert.role = "alert";
+                errorAlert.textContent = "Email was used";
+                
+                // Add alert to the page in a visible location
+                const newsletterSection = document.querySelector(".newsletter");
+                newsletterSection.insertBefore(errorAlert, newsletterSection.firstChild);
+                
+                // Remove alert after 3 seconds
+                setTimeout(() => {
+                    errorAlert.remove();
+                }, 3000);
+            });
+    })
+}
+// end subcribe newsletter 

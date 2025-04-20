@@ -25,49 +25,6 @@
               data-bs-target="#upgradeProModal">
               Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
             </button>
-            <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <form action="" class="payment-form">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Be a membership! <i
-                          class="fa-solid fa-crown text-warning"></i></h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="d-flex align-items-center gap-3">
-                        <div class="pay-month">
-                          $7.50/Month
-                        </div>
-                        <div class="pay-year">
-                          $22.49/Year
-                        </div>
-                      </div>
-                      <div class="d-flex gap-3">
-                        <div class="visa-payment mt-3">
-                          <input type="radio" id="visa-payment" name="payment-method"
-                            style="width: 18px; height: 18px;" />
-                          <label for="visa-payment">
-                            <i class="fa-brands fa-cc-visa"></i>
-                          </label>
-                        </div>
-                        <div class="credit-payment mt-3">
-                          <input type="radio" id="credit-payment" name="payment-method"
-                            style="width: 18px; height: 18px;" />
-                          <label for="credit-payment">
-                            <i class="fa-solid fa-credit-card"></i>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer" style="width: 100%;">
-                      <button type="submit" class="btn btn-primary w-100">Pay</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
             <li class="menu-item">
               <a href="index.html"> Home </a>
             </li>
@@ -85,6 +42,53 @@
       </div>
     </div>
   </header>
+
+  <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="upgradeProModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="" class="payment-form">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="upgradeProModal">Be a membership! <i
+                                class="fa-solid fa-crown text-warning"></i></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="pay-month">
+                                $7.50/Month
+                            </div>
+                            <div class="pay-year">
+                                $22.49/Year
+                            </div>
+                        </div>
+                        <div class="membership">
+                            <img src="assets/images/membership.jpg" alt="membership">
+                        </div>
+                        <div class="d-flex gap-3">
+                            <div class="visa-payment mt-3">
+                                <input type="radio" id="visa-payment" name="payment-method"
+                                    style="width: 18px; height: 18px;" />
+                                <label for="visa-payment">
+                                    <i class="fa-brands fa-cc-visa"></i>
+                                </label>
+                            </div>
+                            <div class="credit-payment mt-3">
+                                <input type="radio" id="credit-payment" name="payment-method"
+                                    style="width: 18px; height: 18px;" />
+                                <label for="credit-payment">
+                                    <i class="fa-solid fa-credit-card"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="width: 100%;">
+                        <button type="submit" class="btn btn-primary w-100">Pay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
   <!-- end header -->
   <section class="register">
     <div class="container">

@@ -79,10 +79,6 @@ header {
   cursor: pointer;
 }
 
-/* .pay-month:hover , .pay-year:hover {
-  border: 1px solid green;
-  color: green;
-} */
 
 .pay-month.selected,
 .pay-year.selected {
@@ -105,6 +101,17 @@ header {
   color: rgb(212, 108, 16);
 }
 
+
+.membership {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.membership img {
+  width:70%;
+  object-fit: cover;
+}
 /* end header  */
 
 /* section hero */
