@@ -193,54 +193,95 @@ if (forgetForm) {
 // end reset password
 
 
-// subcribe newsletter 
+
+/// subcribe newsletter 
 if (newsletterForm) {
     newsletterForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const email = e.target.email.value;
+        const email = e.target.email.value.trim();
 
+        // validation email
+        const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
         
 
-        const newSubcriberRef = push(ref(db, 'subcriber'));
+        // Check email used
+        const subscribersRef = ref(db, 'subcriber');
+        onValue(subscribersRef, (snapshot) => {
+            const data = snapshot.val();
+            let emailExists = false;
 
-        set(newSubcriberRef, {
-            email: email,
-        })
-            .then(() => {
-                // Create alert element
-                const successAlert = document.createElement("div");
-                successAlert.className = "alert alert-success";
-                successAlert.role = "alert";
-                successAlert.textContent = "Thank you for subscribing. We will send you the latest updates";
-                
-                // Add alert to the page in a visible location
-                const newsletterSection = document.querySelector(".newsletter");
-                newsletterSection.insertBefore(successAlert, newsletterSection.firstChild);
-                
-                // Clear the form
-                e.target.reset();
-                
-                // Remove alert after 3 seconds
-                setTimeout(() => {
-                    successAlert.remove();
-                }, 3000);
-            })
-            .catch((error) => {
-                // Create error alert
+            if (data) {
+                for (let key in data) {
+                    if (data[key].email === email) {
+                        emailExists = true;
+                        break;
+                    }
+                }
+            }
+
+            if (emailExists) {
                 const errorAlert = document.createElement("div");
                 errorAlert.className = "alert alert-danger";
                 errorAlert.role = "alert";
-                errorAlert.textContent = "Email was used";
-                
-                // Add alert to the page in a visible location
-                const newsletterSection = document.querySelector(".newsletter");
-                newsletterSection.insertBefore(errorAlert, newsletterSection.firstChild);
-                
-                // Remove alert after 3 seconds
+                errorAlert.textContent = "This email is already subscribed to our newsletter!";
+                errorAlert.style.position = "fixed";
+                errorAlert.style.top = "0";
+                errorAlert.style.left = "0";
+                errorAlert.style.width = "100%";
+                errorAlert.style.zIndex = "9999";
+
+                document.body.prepend(errorAlert);
+
                 setTimeout(() => {
                     errorAlert.remove();
-                }, 3000);
-            });
-    })
+                }, 2000);
+                return;
+            } else {
+                const newSubcriberRef = push(ref(db, 'subcriber'));
+
+                set(newSubcriberRef, {
+                    email: email,
+                })
+                    .then(() => {
+                        const successAlert = document.createElement("div");
+                        successAlert.className = "alert alert-success";
+                        successAlert.role = "alert";
+                        successAlert.textContent = "Thank you for subscribing. We will send you the latest updates";
+                        successAlert.style.position = "fixed";
+                        successAlert.style.top = "0";
+                        successAlert.style.left = "0";
+                        successAlert.style.width = "100%";
+                        successAlert.style.zIndex = "9999";
+
+                        document.body.prepend(successAlert);
+
+                        e.target.reset();
+
+                        setTimeout(() => {
+                            successAlert.remove();
+                        }, 2000);
+                    })
+                    .catch((error) => {
+                        const errorAlert = document.createElement("div");
+                        errorAlert.className = "alert alert-danger";
+                        errorAlert.role = "alert";
+                        errorAlert.textContent = "An error occurred. Please try again later";
+                        errorAlert.style.position = "fixed";
+                        errorAlert.style.top = "0";
+                        errorAlert.style.left = "0";
+                        errorAlert.style.width = "100%";
+                        errorAlert.style.zIndex = "9999";
+        
+                        document.body.prepend(errorAlert);
+        
+                        setTimeout(() => {
+                            errorAlert.remove();
+                        }, 2000);
+                    });
+            }
+        }, {
+            onlyOnce: true
+        });
+    });
 }
 // end subcribe newsletter 
