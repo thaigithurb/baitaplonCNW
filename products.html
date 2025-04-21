@@ -1,331 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShoesShop</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
     <style>
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- header -->
     <header class="header">
-        <div class="container">
-            <div class="wrap">
-                <a href="index.html" class="logo">
-                    ShoeStore
-                </a>
-                <nav class="menu">
-                    <ul class="menu-list align-items-center">
-                        <button type="button" class="btn btn-secondary btn-pro" data-bs-toggle="modal"
-                            data-bs-target="#upgradeProModal">
-                            Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
-                        </button>
-                        <li class="menu-item">
-                            <a href="index.html">
-                                Home
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="products.html">
-                                <strong>Products</strong>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="about.html">
-                                About
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="login.html" id="auth-link">
-                                Login
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+      <div class="container">
+        <div class="wrap">
+          <a href="index.html" class="logo">
+            Shoes<span class="text-warning">Store</span>
+          </a>
+          <nav class="menu">
+            <ul class="menu-list align-items-center">
+              <button
+                type="button"
+                class="btn btn-secondary btn-pro"
+                data-bs-toggle="modal"
+                data-bs-target="#upgradeProModal"
+              >
+                Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
+              </button>
+              <li class="menu-item">
+                <a href="index.html"> Home </a>
+              </li>
+              <li class="menu-item">
+                <a href="products.html"> <strong>Products</strong> </a>
+              </li>
+              <li class="menu-item">
+                <a href="about.html"> About </a>
+              </li>
+              <li class="menu-item">
+                <a href="login.html" id="auth-link"> Login </a>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </div>
     </header>
 
-    <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="upgradeProModal"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="" class="payment-form">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="upgradeProModal">Be a membership! <i
-                                class="fa-solid fa-crown text-warning"></i></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="pay-month">
-                                $7.50/Month
-                            </div>
-                            <div class="pay-year">
-                                $22.49/Year
-                            </div>
-                        </div>
-                        <div class="membership">
-                            <img src="assets/images/membership.jpg" alt="membership">
-                        </div>
-                        <div class="d-flex gap-3">
-                            <div class="visa-payment mt-3">
-                                <input type="radio" id="visa-payment" name="payment-method"
-                                    style="width: 18px; height: 18px;" />
-                                <label for="visa-payment">
-                                    <i class="fa-brands fa-cc-visa"></i>
-                                </label>
-                            </div>
-                            <div class="credit-payment mt-3">
-                                <input type="radio" id="credit-payment" name="payment-method"
-                                    style="width: 18px; height: 18px;" />
-                                <label for="credit-payment">
-                                    <i class="fa-solid fa-credit-card"></i>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer" style="width: 100%;">
-                        <button type="submit" class="btn btn-primary w-100">Pay</button>
-                    </div>
-                </form>
+    <div
+      class="modal fade"
+      id="upgradeProModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="upgradeProModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="" class="payment-form">
+            <div class="modal-header">
+              <h5 class="modal-title" id="upgradeProModal">
+                Be a membership! <i class="fa-solid fa-crown text-warning"></i>
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
+            <div class="modal-body">
+              <div class="d-flex align-items-center gap-3">
+                <div class="pay-month">$7.50/Month</div>
+                <div class="pay-year">$22.49/Year</div>
+              </div>
+              <div class="membership">
+                <img src="assets/images/membership.jpg" alt="membership" />
+              </div>
+              <div class="d-flex gap-3">
+                <div class="visa-payment mt-3">
+                  <input
+                    type="radio"
+                    id="visa-payment"
+                    name="payment-method"
+                    style="width: 18px; height: 18px"
+                  />
+                  <label for="visa-payment">
+                    <i class="fa-brands fa-cc-visa"></i>
+                  </label>
+                </div>
+                <div class="credit-payment mt-3">
+                  <input
+                    type="radio"
+                    id="credit-payment"
+                    name="payment-method"
+                    style="width: 18px; height: 18px"
+                  />
+                  <label for="credit-payment">
+                    <i class="fa-solid fa-credit-card"></i>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="width: 100%">
+              <button type="submit" class="btn btn-primary w-100">Pay</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
     <!-- end header -->
 
     <!-- Products Header -->
     <section class="products-header py-5 bg-light">
-        <div class="container">
-            <h1 class="text-center mb-4">Our Products</h1>
-            <div class="row">
-                <div class="col-md-6 mx-auto text-center">
-                    <p class="lead">Discover our wide range of premium footwear for every occasion.</p>
-                </div>
-            </div>
-            <div class="d-flex flex-column align-items-center">
-                <form class="form-inline my-2 my-lg-0 d-flex w-75 search-form">
-                    <div class="input-group">
-                        <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search"
-                            aria-label="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
-            </div>
+      <div class="container">
+        <h1 class="text-center mb-4">Our Products</h1>
+        <div class="row">
+          <div class="col-md-6 mx-auto text-center">
+            <p class="lead">
+              Discover our wide range of premium footwear for every occasion.
+            </p>
+          </div>
         </div>
+        <div class="d-flex flex-column align-items-center">
+          <form class="form-inline my-2 my-lg-0 d-flex w-75 search-form">
+            <div class="input-group">
+              <input
+                class="form-control mr-sm-2"
+                type="search"
+                name="keyword"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
 
     <!-- Products section  -->
     <section class="products-section py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                    <form class="filters-sidebar">
-                        <h4 class="mb-4">Filters</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <form class="filters-sidebar">
+              <h4 class="mb-4">Filters</h4>
 
-                        <!-- Category Filter -->
-                        <div class="filter-group mb-4">
-                            <h5>Category</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="men">
-                                <label class="form-check-label" for="men">Men's Shoes</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="women">
-                                <label class="form-check-label" for="women">Women's Shoes</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="sports">
-                                <label class="form-check-label" for="sports">Sports Shoes</label>
-                            </div>
-                        </div>
-
-                        <!-- Price Range Filter -->
-                        <div class="filter-group mb-4">
-                            <h5>Price Range</h5>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price1">
-                                <label class="form-check-label" for="price1">Under $50</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price2">
-                                <label class="form-check-label" for="price2">$50 - $100</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price3">
-                                <label class="form-check-label" for="price3">$100 - $200</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="price4">
-                                <label class="form-check-label" for="price4">Over $200</label>
-                            </div>
-                        </div>
-
-                        <!-- Size Filter -->
-                        <div class="filter-group mb-4">
-                            <h5>Size</h5>
-                            <div class="size-buttons">
-                                <button class="btn btn-outline-secondary btn-sm m-1">6</button>
-                                <button class="btn btn-outline-secondary btn-sm m-1">7</button>
-                                <button class="btn btn-outline-secondary btn-sm m-1">8</button>
-                                <button class="btn btn-outline-secondary btn-sm m-1">9</button>
-                                <button class="btn btn-outline-secondary btn-sm m-1">10</button>
-                                <button class="btn btn-outline-secondary btn-sm m-1">11</button>
-                                <button class="btn btn-outline-secondary btn-sm m-1">12</button>
-                            </div>
-                        </div>
-
-                        <button class="btn btn-primary w-100">Apply Filters</button>
-                    </form>
+              <!-- Category Filter -->
+              <div class="filter-group mb-4">
+                <h5>Category</h5>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="men" />
+                  <label class="form-check-label" for="men">Men's Shoes</label>
                 </div>
-                <div class="col-lg-9">
-                    <div class="row g-4">
-                        <!-- Product Card 1-->
-                        <div class="col-md-4">
-                            <div class="card product-card" data-category="men" data-price="99.99"
-                                data-sizes="8,9,10,11">
-                                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-                                    class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Classic Sneaker</h5>
-                                    <p class="card-text">$99.99</p>
-                                    <a href="product-detail.html" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card" data-category="women" data-price="79.99"
-                                data-sizes="6,7,8,9">
-                                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-                                    class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Women's Sneaker</h5>
-                                    <p class="card-text">$79.99</p>
-                                    <a href="product-detail.html" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card" data-category="sports" data-price="129.99"
-                                data-sizes="9,10,11,12">
-                                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-                                    class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sports Running</h5>
-                                    <p class="card-text">$129.99</p>
-                                    <a href="product-detail.html" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card" data-category="men" data-price="149.99"
-                                data-sizes="8,9,10,11">
-                                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-                                    class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Men's Casual</h5>
-                                    <p class="card-text">$149.99</p>
-                                    <a href="product-detail.html" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card" data-category="women" data-price="89.99"
-                                data-sizes="6,7,8,9">
-                                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-                                    class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Women's Casual</h5>
-                                    <p class="card-text">$89.99</p>
-                                    <a href="product-detail.html" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card product-card" data-category="sports" data-price="199.99"
-                                data-sizes="9,10,11,12">
-                                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5"
-                                    class="card-img-top" alt="Product 1">
-                                <div class="card-body">
-                                    <h5 class="card-title">Premium Sports</h5>
-                                    <p class="card-text">$199.99</p>
-                                    <a href="product-detail.html" class="btn btn-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pagination -->
-                    <nav class="mt-5">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="women" />
+                  <label class="form-check-label" for="women"
+                    >Women's Shoes</label
+                  >
                 </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="sports" />
+                  <label class="form-check-label" for="sports"
+                    >Sports Shoes</label
+                  >
+                </div>
+              </div>
+
+              <!-- Price Range Filter -->
+              <div class="filter-group mb-4">
+                <h5>Price Range</h5>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="price1" />
+                  <label class="form-check-label" for="price1">Under $50</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="price2" />
+                  <label class="form-check-label" for="price2"
+                    >$50 - $100</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="price3" />
+                  <label class="form-check-label" for="price3"
+                    >$100 - $200</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="price4" />
+                  <label class="form-check-label" for="price4">Over $200</label>
+                </div>
+              </div>
+
+              <!-- Size Filter -->
+              <div class="filter-group mb-4">
+                <h5>Size</h5>
+                <div class="size-buttons">
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    6
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    7
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    8
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    9
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    10
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    11
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm m-1">
+                    12
+                  </button>
+                </div>
+              </div>
+
+              <button class="btn btn-primary w-100">Apply Filters</button>
+            </form>
+          </div>
+          <div class="col-lg-9">
+            <div class="row g-4">
+              <!-- Product Card 1-->
+              <div class="col-md-4">
+                <div
+                  class="card product-card"
+                  data-category="men"
+                  data-price="99.99"
+                  data-sizes="8,9,10,11"
+                >
+                  <img
+                    src="/WorkSpace/baitaplonCNW/assets/images/product-img/Adidas.png"
+                    class="card-img-top"
+                    alt="Product 1"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">Adidas Terrex Hydroterra</h5>
+                    <p class="card-text">$79.99</p>
+                    <a
+                      href="/WorkSpace/baitaplonCNW/Product-Detail/AdidasSandal.html"
+                      class="btn btn-primary"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="card product-card"
+                  data-category="women"
+                  data-price="79.99"
+                  data-sizes="6,7,8,9"
+                >
+                  <img
+                    src="/WorkSpace/baitaplonCNW/assets/images/product-img/AirForce.jpg"
+                    class="card-img-top"
+                    alt="Product 1"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">Nike AirForce 1</h5>
+                    <p class="card-text">$99.99</p>
+                    <a
+                      href="/WorkSpace/baitaplonCNW/Product-Detail/AirForce1.html"
+                      class="btn btn-primary"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="card product-card"
+                  data-category="sports"
+                  data-price="129.99"
+                  data-sizes="9,10,11,12"
+                >
+                  <img
+                    src="/WorkSpace/baitaplonCNW/assets/images/product-img/Cortez.png"
+                    class="card-img-top"
+                    alt="Product 1"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">Nike Cortez</h5>
+                    <p class="card-text">$80.00</p>
+                    <a
+                      href="/WorkSpace/baitaplonCNW/Product-Detail/Cortez.html"
+                      class="btn btn-primary"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="card product-card"
+                  data-category="men"
+                  data-price="149.99"
+                  data-sizes="8,9,10,11"
+                >
+                  <img
+                    src="/WorkSpace/baitaplonCNW/assets/images/product-img/dunklow2.png"
+                    class="card-img-top"
+                    alt="Product 1"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">Nike Dunk Low</h5>
+                    <p class="card-text">$99.00</p>
+                    <a
+                      href="/WorkSpace/baitaplonCNW/Product-Detail/DunkLow.html"
+                      class="btn btn-primary"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="card product-card"
+                  data-category="women"
+                  data-price="89.99"
+                  data-sizes="6,7,8,9"
+                >
+                  <img
+                    src="/WorkSpace/baitaplonCNW/assets/images/product-img/NewBalance.jpg"
+                    class="card-img-top"
+                    alt="Product 1"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">New Balance 327 Women’s</h5>
+                    <p class="card-text">$135.00</p>
+                    <a
+                      href="/WorkSpace/baitaplonCNW/Product-Detail/NewBalance.html"
+                      class="btn btn-primary"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div
+                  class="card product-card"
+                  data-category="sports"
+                  data-price="199.99"
+                  data-sizes="9,10,11,12"
+                >
+                  <img
+                    src="/WorkSpace/baitaplonCNW/assets/images/product-img/Puma.jpg"
+                    class="card-img-top"
+                    alt="Product 1"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">Puma RS-X</h5>
+                    <p class="card-text">$139.99</p>
+                    <a
+                      href="/WorkSpace/baitaplonCNW/Product-Detail/Puma.html"
+                      class="btn btn-primary"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- Pagination -->
+            <nav class="mt-5">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
+      </div>
     </section>
 
-
     <!-- footer  -->
-    <footer class="footer py-5 bg-dark text-light    ">
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <h5>About ShoeStore</h5>
-                    <p>Your premium destination for the latest footwear trends and styles.</p>
-                </div>
-                <div class="col-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
-                    </ul>
-                </div>
-                <div class="col-4">
-                    <h5>Contact Us</h5>
-                    <ul class="list-unstyled">
-                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
-                        <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion City</li>
-                    </ul>
-                </div>
-            </div>
+    <footer class="footer py-5 bg-dark text-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <h5>About ShoeStore</h5>
+            <p>
+              Your premium destination for the latest footwear trends and
+              styles.
+            </p>
+          </div>
+          <div class="col-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="register.html">Register</a></li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+              <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
+                City
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </footer>
     <!-- end footer  -->
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="assets/scripts/firebaseConfig.js"></script>
     <script type="module" src="assets/scripts/scripts.js"></script>
     <script src="assets/scripts/productFilter.js"></script>
-</body>
-
+  </body>
 </html>

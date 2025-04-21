@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="/WorkSpace/baitaplonCNW/assets/css/style.css"
+    />
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- header -->
+    <header class="header">
+      <div class="container">
+        <div class="wrap">
+          <a href="/WorkSpace/baitaplonCNW/index.html" class="logo">
+            Shoes<span class="text-warning">Store</span>
+          </a>
+          <nav class="menu">
+            <ul class="menu-list align-items-center">
+              <button
+                type="button"
+                class="btn btn-secondary btn-pro"
+                data-bs-toggle="modal"
+                data-bs-target="#upgradeProModal"
+              >
+                Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
+              </button>
+              <li class="menu-item">
+                <a href="/WorkSpace/baitaplonCNW/index.html"> Home </a>
+              </li>
+              <li class="menu-item">
+                <a href="/WorkSpace/baitaplonCNW/products.html"> Products </a>
+              </li>
+              <li class="menu-item">
+                <a href="/WorkSpace/baitaplonCNW/about.html"> About </a>
+              </li>
+              <li class="menu-item">
+                <a href="/WorkSpace/baitaplonCNW/login.html" id="auth-link">
+                  Login
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div
+      class="modal fade"
+      id="upgradeProModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="upgradeProModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="" class="payment-form">
+            <div class="modal-header">
+              <h5 class="modal-title" id="upgradeProModal">
+                Be a membership! <i class="fa-solid fa-crown text-warning"></i>
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex align-items-center gap-3">
+                <div class="pay-month">$7.50/Month</div>
+                <div class="pay-year">$22.49/Year</div>
+              </div>
+              <div class="membership">
+                <img src="assets/images/membership.jpg" alt="membership" />
+              </div>
+              <div class="d-flex gap-3">
+                <div class="visa-payment mt-3">
+                  <input
+                    type="radio"
+                    id="visa-payment"
+                    name="payment-method"
+                    style="width: 18px; height: 18px"
+                  />
+                  <label for="visa-payment">
+                    <i class="fa-brands fa-cc-visa"></i>
+                  </label>
+                </div>
+                <div class="credit-payment mt-3">
+                  <input
+                    type="radio"
+                    id="credit-payment"
+                    name="payment-method"
+                    style="width: 18px; height: 18px"
+                  />
+                  <label for="credit-payment">
+                    <i class="fa-solid fa-credit-card"></i>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="width: 100%">
+              <button type="submit" class="btn btn-primary w-100">Pay</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- end header -->
+    <div
+      class="modal fade"
+      id="upgradeProModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="upgradeProModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="" class="payment-form">
+            <div class="modal-header">
+              <h5 class="modal-title" id="upgradeProModal">
+                Be a membership! <i class="fa-solid fa-crown text-warning"></i>
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="d-flex align-items-center gap-3">
+                <div class="pay-month">$7.50/Month</div>
+                <div class="pay-year">$22.49/Year</div>
+              </div>
+              <div class="membership">
+                <img src="assets/images/membership.jpg" alt="membership" />
+              </div>
+              <div class="d-flex gap-3">
+                <div class="visa-payment mt-3">
+                  <input
+                    type="radio"
+                    id="visa-payment"
+                    name="payment-method"
+                    style="width: 18px; height: 18px"
+                  />
+                  <label for="visa-payment">
+                    <i class="fa-brands fa-cc-visa"></i>
+                  </label>
+                </div>
+                <div class="credit-payment mt-3">
+                  <input
+                    type="radio"
+                    id="credit-payment"
+                    name="payment-method"
+                    style="width: 18px; height: 18px"
+                  />
+                  <label for="credit-payment">
+                    <i class="fa-solid fa-credit-card"></i>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer" style="width: 100%">
+              <button type="submit" class="btn btn-primary w-100">Pay</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- end header -->
+
+    <!-- product detail -->
+    <section class="product-detail">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-6 product-img img-fluid">
+            <img
+              src="/WorkSpace/baitaplonCNW/assets/images/product-img/Vans.jpg"
+              alt=""
+              style="padding: 30px; width: 100%"
+            />
+          </div>
+          <!-- product info -->
+          <div class="col-6 product-infor">
+            <h1 class="product-name">Vans Sk8-Hi</h1>
+            <div class="d-flex align-items-center p-rating pb-3">
+              <i class="fas pe-1 fa-star text-warning"></i>
+              <i class="fas pe-1 fa-star text-warning"></i>
+              <i class="fas pe-1 fa-star text-warning"></i>
+              <i class="fas pe-1 fa-star text-warning"></i>
+              <i class="fas pe-1 fa-star-half-alt text-warning"></i>
+              <span class="ms-2">(4.5 - 120 reviews)</span>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <p class="text-muted mb-0"><del>$119.99</del></p>
+              <span class="badge bg-danger fs-6">23% OFF</span>
+            </div>
+            <h2 class="text-primary fw-bold">$90.00</h2>
+
+            <p class="p-description">
+              The Vans Sk8-Hi is a high-top sneaker that blends classic style
+              with extra ankle support. Known for its bold design and
+              durability, the Sk8-Hi features a leather and canvas upper with a
+              cushioned ankle collar for added comfort.
+            </p>
+
+            <!-- Size Selection -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0">Size :</h5>
+              <div class="size-buttons">
+                <button class="btn btn-outline-secondary m-1">6</button>
+                <button class="btn btn-outline-secondary m-1">7</button>
+                <button class="btn btn-outline-secondary m-1">8</button>
+                <button class="btn btn-outline-secondary m-1">9</button>
+                <button class="btn btn-outline-secondary m-1">10</button>
+                <button class="btn btn-outline-secondary m-1">11</button>
+                <button class="btn btn-outline-secondary m-1">12</button>
+              </div>
+            </div>
+
+            <!-- end Size selection -->
+
+            <!-- Color Selection -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0">Color :</h5>
+              <div class="color-options d-flex">
+                <button
+                  class="btn btn-outline-secondary m-1 rounded-circle"
+                  style="background-color: #000000; width: 30px; height: 30px"
+                ></button>
+                <button
+                  class="btn btn-outline-secondary m-1 rounded-circle"
+                  style="background-color: #ffffff; width: 30px; height: 30px"
+                ></button>
+                <button
+                  class="btn btn-outline-secondary m-1 rounded-circle"
+                  style="background-color: #ff0000; width: 30px; height: 30px"
+                ></button>
+              </div>
+            </div>
+            <!-- end Color selection -->
+
+            <!-- Quantity and Add to Cart -->
+            <div class="quantity-cart mb-4">
+              <div class="row align-items-center">
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <button class="btn btn-outline-secondary" type="button">
+                      -
+                    </button>
+                    <input
+                      type="text"
+                      class="form-control text-center"
+                      value="1"
+                    />
+                    <button class="btn btn-outline-secondary" type="button">
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <button class="btn btn-primary w-100">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+            <!-- end Quantity and Add to Cart -->
+          </div>
+          <!-- end product info -->
+
+          <div class="row mt-5">
+            <div class="col-12">
+              <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="description-tab"
+                    data-bs-toggle="tab"
+                    href="#description"
+                    role="tab"
+                    >Description</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="reviews-tab"
+                    data-bs-toggle="tab"
+                    href="#reviews"
+                    role="tab"
+                    >Reviews</a
+                  >
+                </li>
+              </ul>
+              <div
+                class="tab-content p-4 border border-top-0"
+                id="productTabContent"
+              >
+                <div
+                  class="tab-pane fade show active"
+                  id="description"
+                  role="tabpanel"
+                >
+                  <div class="description">
+                    <p>
+                      <strong>Product Features:</strong><br />
+                      – Stylish design suitable for everyday wear<br />
+                      – Breathable canvas upper keeps feet cool and dry<br />
+                      – Anti-slip rubber outsole for better grip<br />
+                      – Lightweight build reduces foot fatigue<br />
+                      – Soft cushioned insole for extra comfort
+                    </p>
+
+                    <p>
+                      <strong>Available Colors:</strong> Black / White / Red
+                    </p>
+
+                    <p>
+                      <strong>Size Chart:</strong><br />
+                      – US Sizes: 6 / 7 / 8 / 9 / 10 / 11 / 12<br />
+                      – Fits true to size (recommend ordering your usual size)
+                    </p>
+
+                    <p>
+                      <strong>Who Is It For?</strong><br />
+                      – Unisex design for both men and women<br />
+                      – Perfect for students, office workers, travelers, or
+                      casual streetwear lovers
+                    </p>
+
+                    <p>
+                      <strong>Suitable For:</strong><br />
+                      – Daily walking, school, shopping, hanging out, casual
+                      events, or light exercise
+                    </p>
+
+                    <p>
+                      <strong>Material:</strong><br />
+                      – Upper: Premium canvas<br />
+                      – Lining: Breathable mesh<br />
+                      – Sole: Durable anti-slip rubber<br />
+                      – Insole: Soft foam cushion
+                    </p>
+
+                    <p>
+                      <strong>Care Instructions:</strong><br />
+                      – Hand wash or wipe with damp cloth<br />
+                      – Avoid direct sunlight when drying<br />
+                      – Do not bleach
+                    </p>
+
+                    <p>
+                      <strong>Packaging Includes:</strong><br />
+                      – 1 x Pair of Sneakers<br />
+                      – 1 x Box with secure wrap
+                    </p>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                  <h4>Customer Reviews</h4>
+                  <div class="review-item mb-4">
+                    <div class="d-flex justify-content-between">
+                      <h5>John D.</h5>
+                      <div class="rating">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                      </div>
+                    </div>
+                    <p>
+                      "Great quality and very comfortable. I wear these every
+                      day!"
+                    </p>
+                  </div>
+                  <div class="review-item">
+                    <div class="d-flex justify-content-between">
+                      <h5>Sarah M.</h5>
+                      <div class="rating">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="far fa-star text-warning"></i>
+                      </div>
+                    </div>
+                    <p>
+                      "Love the style and comfort. Would recommend to anyone
+                      looking for casual sneakers."
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end product detail -->
+
+    <!-- Related Products -->
+    <div class="related-product bg-light">
+      <div class="container">
+        <h2 class="text-center pb-4">Related Products</h2>
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card product-card">
+              <img
+                src="/WorkSpace/baitaplonCNW/assets/images/product-img/dunklow2.png"
+                alt=""
+                class="card-img-top"
+                style="height: 200px; object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Nike DunkLow</h5>
+                <p class="card-text">$99.00</p>
+                <a href="./DunkLow.html" class="btn btn-primary"
+                  >View Details</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card product-card">
+              <img
+                src="/WorkSpace/baitaplonCNW/assets/images/product-img/Cortez.png"
+                alt=""
+                class="card-img-top"
+                style="height: 200px; object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Nike Cortez</h5>
+                <p class="card-text">$80.00</p>
+                <a href="Cortez.html" class="btn btn-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card product-card">
+              <img
+                src="/WorkSpace/baitaplonCNW/assets/images/product-img/NikeSandal2.jpg"
+                alt=""
+                class="card-img-top"
+                style="height: 200px; object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Nike Canyon Sandal</h5>
+                <p class="card-text">$70.00</p>
+                <a href="NikeSandal.html" class="btn btn-primary"
+                  >View Details</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card product-card">
+              <img
+                src="/WorkSpace/baitaplonCNW/assets/images/product-img/NewBalance.jpg"
+                alt=""
+                class="card-img-top"
+                style="height: 200px; object-fit: cover"
+              />
+              <div class="card-body">
+                <h5 class="card-title">New Balance 327 Women’s</h5>
+                <p class="card-text">$135.00</p>
+                <a href="NewBalance.html" class="btn btn-primary"
+                  >View Details</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Related Products -->
+
+    <!-- footer  -->
+    <footer class="footer py-5 bg-dark text-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <h5>About ShoeStore</h5>
+            <p>
+              Your premium destination for the latest footwear trends and
+              styles.
+            </p>
+          </div>
+          <div class="col-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="/WorkSpace/baitaplonCNW/index.html">Home</a></li>
+              <li>
+                <a href="/WorkSpace/baitaplonCNW/products.html">Products</a>
+              </li>
+              <li><a href="/WorkSpace/baitaplonCNW/about.html">About</a></li>
+              <li><a href="/WorkSpace/baitaplonCNW/login.html">Login</a></li>
+              <li>
+                <a href="/WorkSpace/baitaplonCNW/register.html">Register</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <h5>Contact Us</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+              <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
+                City
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end footer  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
