@@ -51,21 +51,17 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedFilters.searchTerm = searchInput.value.toLowerCase().trim();
     });
 
-    // Prevent form submission and apply filters
     filterForm.addEventListener('submit', (e) => {
         e.preventDefault();
         applyFilters();
     });
 
-    // Handle search form submission
     searchForm.addEventListener('submit', (e) => {
         e.preventDefault();
         applyFilters();
     });
 
-    // Function to apply all filters
     const applyFilters = () => {
-
         let visibleCount = 0;
 
         productCards.forEach(card => {
@@ -107,12 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // collected size 
             selectedFilters.sizes = Array.from(sizeButtons)
                 .filter(button => button.classList.contains('active'))
-                .map(button => button.textContent);
+                .map(button => button.textContent.trim());
 
 
             // Check size filter
             if (selectedFilters.sizes.length > 0) {
                 shouldShow = shouldShow && selectedFilters.sizes.some(size => productSizes.includes(size));
+                console.log(selectedFilters);
+                console.log(shouldShow);
             }
 
             // Check search term
@@ -121,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     productPriceText.includes(selectedFilters.searchTerm);
                 shouldShow = shouldShow && searchMatch;
             }
+
 
             // Show/hide the product card's parent column
             const parentColumn = card.closest('.col-md-4');
