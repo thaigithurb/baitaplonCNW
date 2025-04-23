@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get all filter elements
     const filterForm = document.querySelector('.filters-sidebar');
     const categoryFilters = document.querySelectorAll('input[type="checkbox"][id^="men"], input[type="checkbox"][id^="women"], input[type="checkbox"][id^="sports"]');
     const priceFilters = document.querySelectorAll('input[type="checkbox"][id^="price"]');
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('.search-form input[name="keyword"]');
     const searchForm = document.querySelector('.search-form');
 
-    // Store selected filters
     let selectedFilters = {
         categories: [],
         priceRanges: [],
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         searchTerm: ''
     };
 
-    // Add click event listeners to category and price filters
     categoryFilters.forEach(filter => {
         filter.addEventListener('change', () => {
             if (filter.checked) {
@@ -38,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add click event listeners to size buttons
     sizeButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
@@ -109,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Check size filter
             if (selectedFilters.sizes.length > 0) {
                 shouldShow = shouldShow && selectedFilters.sizes.some(size => productSizes.includes(size));
-                console.log(selectedFilters);
-                console.log(shouldShow);
             }
 
             // Check search term
@@ -133,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Show message if no products match the filters
+        // if no match filters
         let noResultsMessage = document.querySelector('.no-results-message');
 
         if (visibleCount === 0) {
@@ -151,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateFilterCount();
     };
 
-    // Function to update the filter count display
+    // update filter count
     const updateFilterCount = () => {
         const totalFilters = selectedFilters.categories.length +
             selectedFilters.priceRanges.length +

@@ -10,6 +10,12 @@ const newsletterForm = document.querySelector(".newsletter-form");
 let userId = null;
 const paymentForm = document.querySelector(".payment-form");
 const forgetForm = document.querySelector(".forget-form");
+const quantityInput = document.querySelector('input[value]');
+const btnIncrease = document.querySelector(".btn-increase");
+const btnDecrease = document.querySelector(".btn-decrease");
+const sizeButtons = document.querySelectorAll('.size-buttons button');
+const colorButtons = document.querySelectorAll('.color-options button');
+const addToCartButton = document.querySelector(".btn-add-to-cart");
 
 // login, regist 
 if (registerForm) {
@@ -76,7 +82,6 @@ if (loginForm) {
 // auth state change 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in, see docs for a list of available properties
         const uid = user.uid;
         userId = uid;
         authLink.textContent = "Logout";
@@ -84,10 +89,8 @@ onAuthStateChanged(auth, (user) => {
         authLink.addEventListener("click", () => {
             const auth = getAuth();
             signOut(auth).then(() => {
-                // Sign-out successful.
 
-                // Show success alert
-
+                // show alert 
                 const logoutAlert = document.createElement("div");
                 logoutAlert.className = "alert alert-success";
                 logoutAlert.role = "alert";
@@ -101,15 +104,13 @@ onAuthStateChanged(auth, (user) => {
 
 
             }).catch((error) => {
-                // An error happened.
+                console.log(error);
             });
         })
 
     } else {
-        // User is signed out
-        // ...
         authLink.textContent = "Login";
-        authLink.href = "login.html"
+        authLink.href = "login.html";
     }
 });
 // end auth state change 
@@ -144,8 +145,6 @@ if (forgetForm) {
         const email = e.target.email.value;
         sendPasswordResetEmail(auth, email)
             .then(() => {
-                // Password reset email sent!
-                // ..
 
                 // checking email 
                 const userRef = ref(db, 'users/');
@@ -186,7 +185,6 @@ if (forgetForm) {
 
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                // ..
             });
     })
 }
@@ -202,7 +200,7 @@ if (newsletterForm) {
 
         // validation email
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-        
+
 
         // Check email used
         const subscribersRef = ref(db, 'subcriber');
@@ -271,9 +269,9 @@ if (newsletterForm) {
                         errorAlert.style.left = "0";
                         errorAlert.style.width = "100%";
                         errorAlert.style.zIndex = "9999";
-        
+
                         document.body.prepend(errorAlert);
-        
+
                         setTimeout(() => {
                             errorAlert.remove();
                         }, 2000);
@@ -285,3 +283,211 @@ if (newsletterForm) {
     });
 }
 // end subcribe newsletter 
+
+// add to cart 
+
+// Handle size selection
+let selectedSize = null;
+
+if (sizeButtons.length > 0) {
+    sizeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class and shadow from all buttons
+            sizeButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Add active class and shadow to clicked button
+            button.classList.add('active');
+
+            // Get the selected size
+            selectedSize = button.textContent.trim();
+
+            // Get available sizes from the product data
+            const productSizes = Array.from(sizeButtons).map(btn => btn.textContent.trim());
+        });
+    });
+}
+
+// Handle color selection
+let selectedColor = null;
+
+if (colorButtons.length > 0) {
+    colorButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            colorButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.boxShadow = 'none';
+            });
+            // Add active class to clicked button
+            button.classList.add('active');
+            button.style.boxShadow = '0 0 15px 5px rgba(0, 0, 0, 0.2)';
+
+            // Get the selected color from the button's background color
+            selectedColor = button.style.backgroundColor;
+
+            // Get all available colors
+            const productColors = Array.from(colorButtons).map(btn => btn.style.backgroundColor);
+        });
+    });
+}
+
+if (btnIncrease && quantityInput) {
+    btnIncrease.addEventListener("click", () => {
+        let currentValue = parseInt(quantityInput.value) || 0;
+        quantityInput.value = currentValue + 1;
+    });
+}
+
+if (btnDecrease && quantityInput) {
+    btnDecrease.addEventListener("click", () => {
+        let currentValue = parseInt(quantityInput.value) || 0;
+        if (currentValue > 0) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+}
+
+//add to cart
+
+const productDetail = document.querySelector(".product-detail");
+const productPrice = productDetail.querySelector("h2");
+
+if (addToCartButton) {
+    addToCartButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const priceValue = parseFloat(productPrice.textContent.replace(/[^0-9.]/g, '')) || 0;
+        const quantityValue = parseInt(quantityInput.value) || 0;
+        const totalPrice = priceValue * quantityValue;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                userId = uid;
+
+                const cartRef = ref(db, `cart/${userId}/`);
+                onValue(cartRef, (snapshot) => {
+                    let itemExists = false;
+                    let existingItemKey = null;
+                    const cartItems = snapshot.val();
+
+                    if (cartItems) {
+                        for (let key in cartItems) {
+                            const item = cartItems[key];
+                            if (item.selectedSize === selectedSize && item.selectedColor === selectedColor) {
+                                itemExists = true;
+                                existingItemKey = key;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (itemExists && existingItemKey) {
+                        const existingItemRef = ref(db, `cart/${userId}/${existingItemKey}`);
+                        const updatedQuantity = parseInt(cartItems[existingItemKey].quantity) + quantityValue;
+                        const updatedTotalPrice = priceValue * updatedQuantity;
+
+                        set(existingItemRef, {
+                            selectedSize: selectedSize,
+                            selectedColor: selectedColor,
+                            quantity: updatedQuantity,
+                            totalPrice: updatedTotalPrice
+                        })
+                        .then(() => {
+
+                            const successAlert = document.createElement("div");
+                            successAlert.className = "alert alert-success";
+                            successAlert.role = "alert";
+                            successAlert.textContent = "Cart updated successfully!";
+                            successAlert.style.position = "fixed";
+                            successAlert.style.top = "0";
+                            successAlert.style.left = "0";
+                            successAlert.style.width = "100%";
+                            successAlert.style.zIndex = "9999";
+    
+                            document.body.prepend(successAlert);
+
+                            setTimeout(() => {
+                                successAlert.remove();
+                            }, 2000);
+                        })
+                        .catch((error) => {
+
+                            const errorAlert = document.createElement("div");
+                            errorAlert.className = "alert alert-success";
+                            errorAlert.role = "alert";
+                            errorAlert.textContent = "Failed to update cart. Please try again.";
+                            errorAlert.style.position = "fixed";
+                            errorAlert.style.top = "0";
+                            errorAlert.style.left = "0";
+                            errorAlert.style.width = "100%";
+                            errorAlert.style.zIndex = "9999";
+
+                            document.body.prepend(errorAlert);
+
+                            setTimeout(() => {
+                                errorAlert.remove();
+                            }, 2000);
+                        });
+                    } else {
+                        const newCartItemRef = push(cartRef);
+                        set(newCartItemRef, {
+                            selectedSize: selectedSize,
+                            selectedColor: selectedColor,
+                            quantity: quantityValue,
+                            totalPrice: totalPrice
+                        })
+                        .then(() => {
+                            const successAlert = document.createElement("div");
+                            successAlert.className = "alert alert-success";
+                            successAlert.role = "alert";
+                            successAlert.textContent = "Cart added successfully!";
+                            successAlert.style.position = "fixed";
+                            successAlert.style.top = "0";
+                            successAlert.style.left = "0";
+                            successAlert.style.width = "100%";
+                            successAlert.style.zIndex = "9999";
+    
+                            document.body.prepend(successAlert);
+
+                            setTimeout(() => {
+                                successAlert.remove();
+                            }, 2000);
+                        })
+                        .catch((error) => {
+
+                            const errorAlert = document.createElement("div");
+                            errorAlert.className = "alert alert-success";
+                            errorAlert.role = "alert";
+                            errorAlert.textContent = "Failed to add item to cart. Please try again.";
+                            errorAlert.style.position = "fixed";
+                            errorAlert.style.top = "0";
+                            errorAlert.style.left = "0";
+                            errorAlert.style.width = "100%";
+                            errorAlert.style.zIndex = "9999";
+
+                            document.body.prepend(errorAlert);
+
+                            setTimeout(() => {
+                                errorAlert.remove();
+                            }, 2000);
+                        });
+                    }
+                }, { onlyOnce: true });
+            } else {
+                const errorAlert = document.createElement("div");
+                errorAlert.style.position = "fixed";
+                errorAlert.className = "alert alert-danger";
+                errorAlert.role = "alert";
+                errorAlert.textContent = "Please login before shopping.";
+                document.body.prepend(errorAlert);
+
+                setTimeout(() => {
+                    errorAlert.remove();
+                }, 2000);
+            }
+        });
+    });
+}
+// end add to cart 
