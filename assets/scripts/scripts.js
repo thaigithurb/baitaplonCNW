@@ -1,8 +1,3 @@
-import { auth, db } from "./firebaseConfig.js";
-import { createUserWithEmailAndPassword, getAuth, signOut, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
-
-
 const registerForm = document.querySelector(".register-form");
 const loginForm = document.querySelector(".login-form");
 const authLink = document.querySelector("#auth-link");
@@ -17,7 +12,10 @@ const sizeButtons = document.querySelectorAll('.size-buttons button');
 const colorButtons = document.querySelectorAll('.color-options button');
 const addToCartButton = document.querySelector(".btn-add-to-cart");
 
-// login, regist 
+
+const getUsers = () => JSON.parse(localStorage.getItem('users')) || {};
+const getSubscribers = () => JSON.parse(localStorage.getItem('subscribers')) || [];
+// login, register
 if (registerForm) {
     registerForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -30,261 +28,188 @@ if (registerForm) {
         const confirmPassword = e.target.confirmPassword.value;
 
         if (password === confirmPassword) {
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    // Signed up
-                    const user = userCredential.user;
-                    set(ref(db, 'users/' + user.uid), {
-                        username: firstName + " " + lastName,
-                        email: email,
-                        phone: phone,
-                        membership: false
-                    })
-                        .then(() => {
-                            console.log("User data saved successfully.");
-                            window.location.href = "index.html";
-                        })
-                        .catch((error) => {
-                            console.error("Error saving user data:", error);
-                        });
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.error("Error during registration:", errorCode, errorMessage);
-                });
+            const users = getUsers();
+            
+            // Check if email exists
+            if (users[email]) {
+                alert("Email already registered!");
+                return;
+            }
+
+            // Create new user
+            users[email] = {
+                username: firstName + " " + lastName,
+                email: email,
+                phone: phone,
+                password: password, 
+                membership: false
+            };
+
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Automatically log in the user after registration
+            localStorage.setItem('currentUser', email);
+            
+            // Show success message
+            const successAlert = document.createElement("div");
+            successAlert.className = "alert alert-success";
+            successAlert.role = "alert";
+            successAlert.textContent = "Registration successful!";
+            successAlert.style.position = "fixed";
+            successAlert.style.top = "0";
+            successAlert.style.left = "0";
+            successAlert.style.width = "100%";
+            successAlert.style.zIndex = "9999";
+            document.body.prepend(successAlert);
+
+            // Redirect after a short delay
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1000);
         } else {
-            console.error("Passwords do not match.");
+            alert("Passwords do not match!");
         }
     });
 }
+
 if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                // ...
-                window.location.href = "index.html";
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
-    })
+        const users = getUsers();
+
+        if (users[email] && users[email].password === password) {
+            localStorage.setItem('currentUser', email);
+            window.location.href = "index.html";
+        } else {
+            alert("Invalid email or password!");
+        }
+    });
 }
-// end login, regist 
 
-// auth state change 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        const uid = user.uid;
-        userId = uid;
+// check state
+const checkAuthState = () => {
+    const currentUser = localStorage.getItem('currentUser');
+    const cartIcon = document.querySelector(".cart-icon");
+    if (currentUser) {
+        cartIcon.style.display = "block";
         authLink.textContent = "Logout";
-        authLink.href = "#"
-        authLink.addEventListener("click", () => {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-
-                // show alert 
-                const logoutAlert = document.createElement("div");
-                logoutAlert.className = "alert alert-success";
-                logoutAlert.role = "alert";
-                logoutAlert.textContent = "You have successfully logged out!";
-                document.body.prepend(logoutAlert);
-
-                setTimeout(() => {
-                    logoutAlert.remove();
-                }, 1000);
-
-
-
-            }).catch((error) => {
-                console.log(error);
-            });
-        })
-
+        authLink.href = "#";
+        authLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            const logoutAlert = document.createElement("div");
+            logoutAlert.className = "alert alert-success";
+            logoutAlert.role = "alert";
+            logoutAlert.textContent = "You have successfully logged out!";
+            document.body.prepend(logoutAlert);
+            setTimeout(() => {
+                logoutAlert.remove();
+                window.location.reload();
+            }, 1000);
+        });
     } else {
+        cartIcon.style.display = "none";
         authLink.textContent = "Login";
         authLink.href = "login.html";
     }
-});
-// end auth state change 
+};
 
+checkAuthState();
 
-// select payment
+// select payment pro
 if (paymentForm) {
     paymentForm.querySelectorAll(".pay-month, .pay-year").forEach((element) => {
         element.addEventListener("click", () => {
-            // Check if the clicked element is pay-month
+
             if (element.classList.contains("pay-month")) {
-                // Add 'selected-payment' class to pay-month and remove it from pay-year
+
                 document.querySelector(".pay-month").classList.add("selected");
                 document.querySelector(".pay-year").classList.remove("selected");
             } else if (element.classList.contains("pay-year")) {
-                // Add 'selected-payment' class to pay-year and remove it from pay-month
                 document.querySelector(".pay-year").classList.add("selected");
                 document.querySelector(".pay-month").classList.remove("selected");
             }
         });
     });
 }
-// end select payment
 
-// reset password 
+// reset password
 if (forgetForm) {
-
-    let emailFound = false;
-
     forgetForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const email = e.target.email.value;
-        sendPasswordResetEmail(auth, email)
-            .then(() => {
+        const users = getUsers();
 
-                // checking email 
-                const userRef = ref(db, 'users/');
-                onValue(userRef, (snapshot) => {
-                    const data = snapshot.val();
-                    for (let key in data) {
-                        const user = data[key];
-
-                        // if found email 
-                        if (user.email === email) {
-                            const resetAlert = document.createElement("div");
-                            resetAlert.className = "alert alert-success";
-                            resetAlert.role = "alert";
-                            resetAlert.textContent = "Check your email to change password!";
-                            document.body.prepend(resetAlert);
-                            setTimeout(() => {
-                                resetAlert.remove();
-                            }, 1000);
-                            emailFound = true;
-                            break;
-                        }
-                    }
-                    // if email not found 
-                    if (!emailFound) {
-                        const resetAlert = document.createElement("div");
-                        resetAlert.className = "alert alert-danger";
-                        resetAlert.role = "alert";
-                        resetAlert.textContent = "Incorrect Email!";
-                        document.body.prepend(resetAlert);
-                        setTimeout(() => {
-                            resetAlert.remove();
-                        }, 1000);
-                    }
-                });
-
-            })
-            .catch((error) => {
-
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
-    })
+        if (users[email]) {
+            const resetAlert = document.createElement("div");
+            resetAlert.className = "alert alert-success";
+            resetAlert.role = "alert";
+            resetAlert.textContent = "Password reset instructions sent to your email!";
+            document.body.prepend(resetAlert);
+            setTimeout(() => {
+                resetAlert.remove();
+            }, 2000);
+        } else {
+            const resetAlert = document.createElement("div");
+            resetAlert.className = "alert alert-danger";
+            resetAlert.role = "alert";
+            resetAlert.textContent = "Email not found!";
+            document.body.prepend(resetAlert);
+            setTimeout(() => {
+                resetAlert.remove();
+            }, 2000);
+        }
+    });
 }
-// end reset password
 
-
-
-/// subcribe newsletter 
+// subscribe newsletter
 if (newsletterForm) {
     newsletterForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const email = e.target.email.value.trim();
-
-        // validation email
         const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address!");
+            return;
+        }
 
-        // Check email used
-        const subscribersRef = ref(db, 'subcriber');
-        onValue(subscribersRef, (snapshot) => {
-            const data = snapshot.val();
-            let emailExists = false;
+        const subscribers = getSubscribers();
+        
+        if (subscribers.includes(email)) {
+            const errorAlert = document.createElement("div");
+            errorAlert.className = "alert alert-danger";
+            errorAlert.role = "alert";
+            errorAlert.textContent = "This email is already subscribed to our newsletter!";
+            errorAlert.style.position = "fixed";
+            errorAlert.style.top = "0";
+            errorAlert.style.left = "0";
+            errorAlert.style.width = "100%";
+            errorAlert.style.zIndex = "9999";
+            document.body.prepend(errorAlert);
+            setTimeout(() => errorAlert.remove(), 2000);
+            return;
+        }
 
-            if (data) {
-                for (let key in data) {
-                    if (data[key].email === email) {
-                        emailExists = true;
-                        break;
-                    }
-                }
-            }
+        subscribers.push(email);
+        localStorage.setItem('subscribers', JSON.stringify(subscribers));
 
-            if (emailExists) {
-                const errorAlert = document.createElement("div");
-                errorAlert.className = "alert alert-danger";
-                errorAlert.role = "alert";
-                errorAlert.textContent = "This email is already subscribed to our newsletter!";
-                errorAlert.style.position = "fixed";
-                errorAlert.style.top = "0";
-                errorAlert.style.left = "0";
-                errorAlert.style.width = "100%";
-                errorAlert.style.zIndex = "9999";
-
-                document.body.prepend(errorAlert);
-
-                setTimeout(() => {
-                    errorAlert.remove();
-                }, 2000);
-                return;
-            } else {
-                const newSubcriberRef = push(ref(db, 'subcriber'));
-
-                set(newSubcriberRef, {
-                    email: email,
-                })
-                    .then(() => {
-                        const successAlert = document.createElement("div");
-                        successAlert.className = "alert alert-success";
-                        successAlert.role = "alert";
-                        successAlert.textContent = "Thank you for subscribing. We will send you the latest updates";
-                        successAlert.style.position = "fixed";
-                        successAlert.style.top = "0";
-                        successAlert.style.left = "0";
-                        successAlert.style.width = "100%";
-                        successAlert.style.zIndex = "9999";
-
-                        document.body.prepend(successAlert);
-
-                        e.target.reset();
-
-                        setTimeout(() => {
-                            successAlert.remove();
-                        }, 2000);
-                    })
-                    .catch((error) => {
-                        const errorAlert = document.createElement("div");
-                        errorAlert.className = "alert alert-danger";
-                        errorAlert.role = "alert";
-                        errorAlert.textContent = "An error occurred. Please try again later";
-                        errorAlert.style.position = "fixed";
-                        errorAlert.style.top = "0";
-                        errorAlert.style.left = "0";
-                        errorAlert.style.width = "100%";
-                        errorAlert.style.zIndex = "9999";
-
-                        document.body.prepend(errorAlert);
-
-                        setTimeout(() => {
-                            errorAlert.remove();
-                        }, 2000);
-                    });
-            }
-        }, {
-            onlyOnce: true
-        });
+        const successAlert = document.createElement("div");
+        successAlert.className = "alert alert-success";
+        successAlert.role = "alert";
+        successAlert.textContent = "Thank you for subscribing. We will send you the latest updates";
+        successAlert.style.position = "fixed";
+        successAlert.style.top = "0";
+        successAlert.style.left = "0";
+        successAlert.style.width = "100%";
+        successAlert.style.zIndex = "9999";
+        document.body.prepend(successAlert);
+        e.target.reset();
+        setTimeout(() => successAlert.remove(), 2000);
     });
 }
-// end subcribe newsletter 
-
-// add to cart 
 
 // Handle size selection
 let selectedSize = null;
@@ -292,18 +217,12 @@ let selectedSize = null;
 if (sizeButtons.length > 0) {
     sizeButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class and shadow from all buttons
             sizeButtons.forEach(btn => {
                 btn.classList.remove('active');
             });
-            // Add active class and shadow to clicked button
             button.classList.add('active');
 
-            // Get the selected size
             selectedSize = button.textContent.trim();
-
-            // Get available sizes from the product data
-            const productSizes = Array.from(sizeButtons).map(btn => btn.textContent.trim());
         });
     });
 }
@@ -314,20 +233,15 @@ let selectedColor = null;
 if (colorButtons.length > 0) {
     colorButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons
             colorButtons.forEach(btn => {
                 btn.classList.remove('active');
                 btn.style.boxShadow = 'none';
             });
-            // Add active class to clicked button
             button.classList.add('active');
             button.style.boxShadow = '0 0 15px 5px rgba(0, 0, 0, 0.2)';
 
-            // Get the selected color from the button's background color
             selectedColor = button.style.backgroundColor;
 
-            // Get all available colors
-            const productColors = Array.from(colorButtons).map(btn => btn.style.backgroundColor);
         });
     });
 }
@@ -348,146 +262,176 @@ if (btnDecrease && quantityInput) {
     });
 }
 
-//add to cart
-
-const productDetail = document.querySelector(".product-detail");
-const productPrice = productDetail.querySelector("h2");
-
+// add to cart 
 if (addToCartButton) {
-    addToCartButton.addEventListener("click", (e) => {
-        e.preventDefault();
+    addToCartButton.addEventListener("click", () => {
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+            alert("Please login before adding to cart!");
+            window.location.href = "login.html";
+            return;
+        }
 
-        const priceValue = parseFloat(productPrice.textContent.replace(/[^0-9.]/g, '')) || 0;
-        const quantityValue = parseInt(quantityInput.value) || 0;
-        const totalPrice = priceValue * quantityValue;
+        if (!selectedSize) {
+            alert("Please select a size!");
+            return;
+        }
+        if (!selectedColor) {
+            alert("Please select a color!");
+            return;
+        }
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const uid = user.uid;
-                userId = uid;
+        const productName = document.querySelector('.product-name').textContent;
+        const productPrice = document.querySelector('.product-detail h2').textContent;
+        const quantity = quantityInput.value;
+        const totalPrice = (parseFloat(productPrice.replace(/[^0-9.]/g, '')) * quantity).toFixed(2);
+        const productImageElement = document.querySelector('.product-detail img');
+        const productImage = productImageElement ? productImageElement.src : '';
 
-                const cartRef = ref(db, `cart/${userId}/`);
-                onValue(cartRef, (snapshot) => {
-                    let itemExists = false;
-                    let existingItemKey = null;
-                    const cartItems = snapshot.val();
+        const product = {
+            name: productName,
+            price: productPrice,
+            size: selectedSize,
+            color: selectedColor,
+            quantity: quantity,
+            totalPrice: totalPrice,
+            image: productImage 
+        };
 
-                    if (cartItems) {
-                        for (let key in cartItems) {
-                            const item = cartItems[key];
-                            if (item.selectedSize === selectedSize && item.selectedColor === selectedColor) {
-                                itemExists = true;
-                                existingItemKey = key;
-                                break;
-                            }
-                        }
-                    }
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        const existingProductIndex = cart.findIndex(item => 
+            item.name === product.name && 
+            item.size === product.size && 
+            item.color === product.color
+        );
 
-                    if (itemExists && existingItemKey) {
-                        const existingItemRef = ref(db, `cart/${userId}/${existingItemKey}`);
-                        const updatedQuantity = parseInt(cartItems[existingItemKey].quantity) + quantityValue;
-                        const updatedTotalPrice = priceValue * updatedQuantity;
-
-                        set(existingItemRef, {
-                            selectedSize: selectedSize,
-                            selectedColor: selectedColor,
-                            quantity: updatedQuantity,
-                            totalPrice: updatedTotalPrice
-                        })
-                        .then(() => {
-
-                            const successAlert = document.createElement("div");
-                            successAlert.className = "alert alert-success";
-                            successAlert.role = "alert";
-                            successAlert.textContent = "Cart updated successfully!";
-                            successAlert.style.position = "fixed";
-                            successAlert.style.top = "0";
-                            successAlert.style.left = "0";
-                            successAlert.style.width = "100%";
-                            successAlert.style.zIndex = "9999";
-    
-                            document.body.prepend(successAlert);
-
-                            setTimeout(() => {
-                                successAlert.remove();
-                            }, 2000);
-                        })
-                        .catch((error) => {
-
-                            const errorAlert = document.createElement("div");
-                            errorAlert.className = "alert alert-success";
-                            errorAlert.role = "alert";
-                            errorAlert.textContent = "Failed to update cart. Please try again.";
-                            errorAlert.style.position = "fixed";
-                            errorAlert.style.top = "0";
-                            errorAlert.style.left = "0";
-                            errorAlert.style.width = "100%";
-                            errorAlert.style.zIndex = "9999";
-
-                            document.body.prepend(errorAlert);
-
-                            setTimeout(() => {
-                                errorAlert.remove();
-                            }, 2000);
-                        });
-                    } else {
-                        const newCartItemRef = push(cartRef);
-                        set(newCartItemRef, {
-                            selectedSize: selectedSize,
-                            selectedColor: selectedColor,
-                            quantity: quantityValue,
-                            totalPrice: totalPrice
-                        })
-                        .then(() => {
-                            const successAlert = document.createElement("div");
-                            successAlert.className = "alert alert-success";
-                            successAlert.role = "alert";
-                            successAlert.textContent = "Cart added successfully!";
-                            successAlert.style.position = "fixed";
-                            successAlert.style.top = "0";
-                            successAlert.style.left = "0";
-                            successAlert.style.width = "100%";
-                            successAlert.style.zIndex = "9999";
-    
-                            document.body.prepend(successAlert);
-
-                            setTimeout(() => {
-                                successAlert.remove();
-                            }, 2000);
-                        })
-                        .catch((error) => {
-
-                            const errorAlert = document.createElement("div");
-                            errorAlert.className = "alert alert-success";
-                            errorAlert.role = "alert";
-                            errorAlert.textContent = "Failed to add item to cart. Please try again.";
-                            errorAlert.style.position = "fixed";
-                            errorAlert.style.top = "0";
-                            errorAlert.style.left = "0";
-                            errorAlert.style.width = "100%";
-                            errorAlert.style.zIndex = "9999";
-
-                            document.body.prepend(errorAlert);
-
-                            setTimeout(() => {
-                                errorAlert.remove();
-                            }, 2000);
-                        });
-                    }
-                }, { onlyOnce: true });
-            } else {
-                const errorAlert = document.createElement("div");
-                errorAlert.style.position = "fixed";
-                errorAlert.className = "alert alert-danger";
-                errorAlert.role = "alert";
-                errorAlert.textContent = "Please login before shopping.";
-                document.body.prepend(errorAlert);
-
-                setTimeout(() => {
-                    errorAlert.remove();
-                }, 2000);
-            }
-        });
+        if (existingProductIndex !== -1) {
+            cart[existingProductIndex].quantity = parseInt(cart[existingProductIndex].quantity) + parseInt(quantity);
+            cart[existingProductIndex].totalPrice = (parseFloat(cart[existingProductIndex].price.replace(/[^0-9.]/g, '')) * cart[existingProductIndex].quantity).toFixed(2);
+        } else {
+            cart.push(product);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Product added to cart successfully!');
     });
 }
-// end add to cart 
+
+
+const displayCart = () => {
+    const cartList = document.querySelector('.cart-list');
+    const subtotalElement = document.querySelector('#subtotal');
+    const shippingElement = document.querySelector('#shipping');
+    const totalElement = document.querySelector('#total');
+
+
+    if (!cartList) return;
+
+    // Get cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cart.length === 0) {
+        cartList.innerHTML = '<div class="alert alert-info">Your cart is empty</div>';
+        return;
+    }
+
+    let subtotal = 0;
+    cart.forEach(item => {
+        subtotal += parseFloat(item.totalPrice);
+    });
+
+    const shipping = subtotal > 100 ? 0 : 10;
+    const total = subtotal + shipping;
+
+    if (subtotalElement) subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+    if (shippingElement) shippingElement.textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
+    if (totalElement) totalElement.textContent = `$${total.toFixed(2)}`;
+
+    let cartHTML = '';
+    cart.forEach((item, index) => {
+        cartHTML += `
+            <div class="cart-items mb-3">
+                <div class="d-flex align-items-center gap-5">
+                    <div class="cart-items-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-items-info">
+                        <h3 class="cart-items-title">
+                            ${item.name}
+                        </h3>
+                        <h5 class="price">
+                            $${item.totalPrice}
+                        </h5>
+                        <p>Size: ${item.size}</p>
+                        <p class="d-flex align-items-center">Color: <span style="display: inline-block; width: 20px; border: 1px solid black; margin-left: 8px; height: 20px; background-color: ${item.color}; border-radius: 50%;"></span></p>
+                    </div>
+                </div>
+                <div class="item-actions d-flex align-items-center gap-5">
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary btn-decrease" type="button" data-index="${index}">
+                            -
+                        </button>
+                        <input type="text" class="form-control text-center" name="quantity" value="${item.quantity}" readonly />
+                        <button class="btn btn-outline-secondary btn-increase" type="button" data-index="${index}">
+                            +
+                        </button>
+                    </div>
+                    <i class="fa-solid fa-trash remove-item" data-index="${index}" style="cursor: pointer;"></i>
+                </div>
+            </div>
+        `;
+    });
+
+    cartList.innerHTML = cartHTML;
+
+    document.querySelectorAll('.btn-decrease').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            updateQuantity(index, -1);
+        });
+    });
+
+    document.querySelectorAll('.btn-increase').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            updateQuantity(index, 1);
+        });
+    });
+
+    document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            removeFromCart(index);
+        });
+    });
+};
+
+// Update quantity
+const updateQuantity = (index, change) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index]) {
+        const newQuantity = parseInt(cart[index].quantity) + change;
+        if (newQuantity > 0) {
+            cart[index].quantity = newQuantity;
+            cart[index].totalPrice = (parseFloat(cart[index].price.replace(/[^0-9.]/g, '')) * newQuantity).toFixed(2);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+};
+
+// Remove item
+const removeFromCart = (index) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
+};
+
+// Call displayCart when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('.cart-list')) {
+        displayCart();
+    }
+});

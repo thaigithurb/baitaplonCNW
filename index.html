@@ -1,343 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShoesShop</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <style>
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
-  </head>
 
-  <body>
-    <!-- header -->
-    <header class="header">
-      <div class="container">
-        <div class="wrap">
-          <a href="#" class="logo">
-            Shoes<span class="text-warning">Store</span>
-          </a>
-          <nav class="menu">
-            <ul class="menu-list align-items-center">
-              <button
-                type="button"
-                class="btn btn-secondary btn-pro"
-                data-bs-toggle="modal"
-                data-bs-target="#upgradeProModal"
-              >
-                Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
-              </button>
-              <li class="menu-item">
-                <a href="#">
-                  <strong>Home</strong>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="products.html"> Products </a>
-              </li>
-              <li class="menu-item">
-                <a href="about.html"> About </a>
-              </li>
-              <li class="menu-item">
-                <a href="login.html" id="auth-link"> Login </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShoesShop</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- header -->
+  <header class="header">
+    <div class="container">
+      <div class="wrap">
+        <a href="#" class="logo">
+          Shoes<span class="text-warning">Store</span>
+        </a>
+        <nav class="menu">
+          <ul class="menu-list align-items-center">
+            <button type="button" class="btn btn-secondary btn-pro" data-bs-toggle="modal"
+              data-bs-target="#upgradeProModal">
+              Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
+            </button>
+            <li class="menu-item">
+              <a href="#">
+                <strong>Home</strong>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="products.html"> Products </a>
+            </li>
+            <li class="menu-item">
+              <a href="about.html"> About </a>
+            </li>
+            <li class="menu-item">
+              <a href="login.html" id="auth-link"> Login </a>
+            </li>
+            <a href="cart.html" class="cart-icon">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+          </ul>
+        </nav>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div
-      class="modal fade"
-      id="upgradeProModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="upgradeProModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form action="" class="payment-form">
-            <div class="modal-header">
-              <h5 class="modal-title" id="upgradeProModal">
-                Be a membership! <i class="fa-solid fa-crown text-warning"></i>
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+  <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="upgradeProModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="" class="payment-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="upgradeProModal">
+              Be a membership! <i class="fa-solid fa-crown text-warning"></i>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex align-items-center gap-3">
+              <div class="pay-month">$7.50/Month</div>
+              <div class="pay-year">$22.49/Year</div>
             </div>
-            <div class="modal-body">
-              <div class="d-flex align-items-center gap-3">
-                <div class="pay-month">$7.50/Month</div>
-                <div class="pay-year">$22.49/Year</div>
+            <div class="membership">
+              <img src="assets/images/membership.jpg" alt="membership" />
+            </div>
+            <div class="d-flex gap-3">
+              <div class="visa-payment mt-3">
+                <input type="radio" id="visa-payment" name="payment-method" style="width: 18px; height: 18px" />
+                <label for="visa-payment">
+                  <i class="fa-brands fa-cc-visa"></i>
+                </label>
               </div>
-              <div class="membership">
-                <img src="assets/images/membership.jpg" alt="membership" />
-              </div>
-              <div class="d-flex gap-3">
-                <div class="visa-payment mt-3">
-                  <input
-                    type="radio"
-                    id="visa-payment"
-                    name="payment-method"
-                    style="width: 18px; height: 18px"
-                  />
-                  <label for="visa-payment">
-                    <i class="fa-brands fa-cc-visa"></i>
-                  </label>
-                </div>
-                <div class="credit-payment mt-3">
-                  <input
-                    type="radio"
-                    id="credit-payment"
-                    name="payment-method"
-                    style="width: 18px; height: 18px"
-                  />
-                  <label for="credit-payment">
-                    <i class="fa-solid fa-credit-card"></i>
-                  </label>
-                </div>
+              <div class="credit-payment mt-3">
+                <input type="radio" id="credit-payment" name="payment-method" style="width: 18px; height: 18px" />
+                <label for="credit-payment">
+                  <i class="fa-solid fa-credit-card"></i>
+                </label>
               </div>
             </div>
-            <div class="modal-footer" style="width: 100%">
-              <button type="submit" class="btn btn-primary w-100">Pay</button>
+          </div>
+          <div class="modal-footer" style="width: 100%">
+            <button type="submit" class="btn btn-primary w-100">Pay</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- end header -->
+
+  <!-- section hero  -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-left">
+        <div class="hero-title">Step into style</div>
+        <p class="hero-desc">
+          Discover our latest collection of premium footwear for every
+          occasion.
+        </p>
+        <a href="products.html">
+          <button class="btn btn-primary btn-lg">Shop Now</button>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- end section hero  -->
+
+  <!-- section category  -->
+  <section class="category">
+    <div class="container">
+      <div class="title">Shop by Category</div>
+      <div class="category-list row">
+        <div class="col-4">
+          <div class="category-card">
+            <img src="assets/images/men-collection.jpg" alt="men-collection" />
+            <div class="item-name category-overlay">
+              <div class="name">Men's Collection</div>
+              <a href="products.html" class="btn">Shop Men</a>
             </div>
-          </form>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="category-card">
+            <img src="assets/images/women-collection.jpg" alt="women-collection" />
+            <div class="item-name category-overlay">
+              <div class="name">Women's Collection</div>
+              <a href="products.html" class="btn">Shop Women</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="category-card">
+            <img src="assets/images/sports-collection.jpg" alt="sports-collection" />
+            <div class="item-name category-overlay">
+              <div class="name">Sports's Collection</div>
+              <a href="products.html" class="btn">Shop Sports</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- end header -->
+  </section>
+  <!-- end section category  -->
 
-    <!-- section hero  -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-left">
-          <div class="hero-title">Step into style</div>
-          <p class="hero-desc">
-            Discover our latest collection of premium footwear for every
-            occasion.
+  <!-- section products -->
+  <section class="products">
+    <div class="container">
+      <div class="title">Featured Products</div>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img src="assets/images/product-img/dunklow2.png" alt="" class="card-img-top"
+              style="height: 200px; object-fit: cover" />
+            <div class="card-body">
+              <h5 class="card-title">Nike DunkLow</h5>
+              <p class="card-text">$99.00</p>
+              <a href="DunkLow.html" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img src="assets/images/product-img/Cortez.png" alt="" class="card-img-top"
+              style="height: 200px; object-fit: cover" />
+            <div class="card-body">
+              <h5 class="card-title">Nike Cortez</h5>
+              <p class="card-text">$80.00</p>
+              <a href="Cortez.html" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img src="assets/images/product-img/NikeSandal2.jpg" alt="" class="card-img-top"
+              style="height: 200px; object-fit: cover" />
+            <div class="card-body">
+              <h5 class="card-title">Nike Canyon Sandal</h5>
+              <p class="card-text">$70.00</p>
+              <a href="NikeSandal.html" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card product-card">
+            <img src="assets/images/product-img/NewBalance.jpg" alt="" class="card-img-top"
+              style="height: 200px; object-fit: cover" />
+            <div class="card-body">
+              <h5 class="card-title">New Balance 327 Women’s</h5>
+              <p class="card-text">$135.00</p>
+              <a href="NewBalance.html" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end section products  -->
+
+  <!-- section newsletter  -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="wrap">
+        <div class="title-desc">
+          <h3>Subscribe to Our Newsletter</h3>
+          <p>Get the latest updates on new products and upcoming sales</p>
+        </div>
+        <form action="" class="newsletter-form">
+          <div class="input-group">
+            <input type="email" name="email" class="form-control" id="" placeholder="Enter your email" />
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- end section newsletter  -->
+
+  <!-- footer  -->
+  <footer class="footer py-5 bg-dark text-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <h5>About ShoeStore</h5>
+          <p>
+            Your premium destination for the latest footwear trends and
+            styles.
           </p>
-          <a href="products.html">
-            <button class="btn btn-primary btn-lg">Shop Now</button>
-          </a>
+        </div>
+        <div class="col-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
+              City
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
-    <!-- end section hero  -->
+    </div>
+  </footer>
+  <!-- end footer  -->
 
-    <!-- section category  -->
-    <section class="category">
-      <div class="container">
-        <div class="title">Shop by Category</div>
-        <div class="category-list row">
-          <div class="col-4">
-            <div class="category-card">
-              <img
-                src="assets/images/men-collection.jpg"
-                alt="men-collection"
-              />
-              <div class="item-name category-overlay">
-                <div class="name">Men's Collection</div>
-                <a href="products.html" class="btn">Shop Men</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="category-card">
-              <img
-                src="assets/images/women-collection.jpg"
-                alt="women-collection"
-              />
-              <div class="item-name category-overlay">
-                <div class="name">Women's Collection</div>
-                <a href="products.html" class="btn">Shop Women</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="category-card">
-              <img
-                src="assets/images/sports-collection.jpg"
-                alt="sports-collection"
-              />
-              <div class="item-name category-overlay">
-                <div class="name">Sports's Collection</div>
-                <a href="products.html" class="btn">Shop Sports</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end section category  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="assets/scripts/firebaseConfig.js"></script>
+  <script type="module" src="assets/scripts/scripts.js"></script>
+</body>
 
-    <!-- section products -->
-    <section class="products">
-      <div class="container">
-        <div class="title">Featured Products</div>
-        <div class="row g-4">
-          <div class="col-md-3">
-            <div class="card product-card">
-              <img
-                src="assets/images/product-img/dunklow2.png"
-                alt=""
-                class="card-img-top"
-                style="height: 200px; object-fit: cover"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Nike DunkLow</h5>
-                <p class="card-text">$99.00</p>
-                <a href="DunkLow.html" class="btn btn-primary"
-                  >View Details</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="card product-card">
-              <img
-                src="assets/images/product-img/Cortez.png"
-                alt=""
-                class="card-img-top"
-                style="height: 200px; object-fit: cover"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Nike Cortez</h5>
-                <p class="card-text">$80.00</p>
-                <a href="Cortez.html" class="btn btn-primary"
-                  >View Details</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="card product-card">
-              <img
-                src="assets/images/product-img/NikeSandal2.jpg"
-                alt=""
-                class="card-img-top"
-                style="height: 200px; object-fit: cover"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Nike Canyon Sandal</h5>
-                <p class="card-text">$70.00</p>
-                <a
-                  href="NikeSandal.html"
-                  class="btn btn-primary"
-                  >View Details</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="card product-card">
-              <img
-                src="assets/images/product-img/NewBalance.jpg"
-                alt=""
-                class="card-img-top"
-                style="height: 200px; object-fit: cover"
-              />
-              <div class="card-body">
-                <h5 class="card-title">New Balance 327 Women’s</h5>
-                <p class="card-text">$135.00</p>
-                <a
-                  href="NewBalance.html"
-                  class="btn btn-primary"
-                  >View Details</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- end section products  -->
-
-    <!-- section newsletter  -->
-    <section class="newsletter">
-      <div class="container">
-        <div class="wrap">
-          <div class="title-desc">
-            <h3>Subscribe to Our Newsletter</h3>
-            <p>Get the latest updates on new products and upcoming sales</p>
-          </div>
-          <form action="" class="newsletter-form">
-            <div class="input-group">
-              <input
-                type="email"
-                name="email"
-                class="form-control"
-                id=""
-                placeholder="Enter your email"
-              />
-              <button class="btn btn-primary" type="submit">Subscribe</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-    <!-- end section newsletter  -->
-
-    <!-- footer  -->
-    <footer class="footer py-5 bg-dark text-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-4">
-            <h5>About ShoeStore</h5>
-            <p>
-              Your premium destination for the latest footwear trends and
-              styles.
-            </p>
-          </div>
-          <div class="col-4">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="products.html">Products</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="register.html">Register</a></li>
-            </ul>
-          </div>
-          <div class="col-4">
-            <h5>Contact Us</h5>
-            <ul class="list-unstyled">
-              <li><i class="fas fa-phone"></i> +1 234 567 890</li>
-              <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
-                City
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- end footer  -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="assets/scripts/firebaseConfig.js"></script>
-    <script type="module" src="assets/scripts/scripts.js"></script>
-  </body>
 </html>
