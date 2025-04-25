@@ -286,6 +286,8 @@ if (addToCartButton) {
         const productImage = productImageElement ? productImageElement.src : '';
 
         const path = window.location.pathname;
+
+        // get product-deital page 
         const linkItem = path.substring(path.lastIndexOf('/') + 1);
 
         const product = {
@@ -436,3 +438,38 @@ document.addEventListener('DOMContentLoaded', () => {
         displayCart();
     }
 });
+
+// checkout 
+document.querySelector("#checkout-btn").addEventListener("click", () => {
+    // Get cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length > 0) {
+        cart.length = 0;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+        const successAlert = document.createElement("div");
+        successAlert.className = "alert alert-success";
+        successAlert.role = "alert";
+        successAlert.textContent = "Thank you for your purchase! Your cart is now empty.";
+        successAlert.style.position = "fixed";
+        successAlert.style.top = "0";
+        successAlert.style.left = "0";
+        successAlert.style.width = "100%";
+        successAlert.style.zIndex = "9999";
+        document.body.prepend(successAlert);
+        setTimeout(() => successAlert.remove(), 2000);
+    } else {
+        const successAlert = document.createElement("div");
+        successAlert.className = "alert alert-info";
+        successAlert.role = "alert";
+        successAlert.textContent = "Your cart is already empty.";
+        successAlert.style.position = "fixed";
+        successAlert.style.top = "0";
+        successAlert.style.left = "0";
+        successAlert.style.width = "100%";
+        successAlert.style.zIndex = "9999";
+        document.body.prepend(successAlert);
+        setTimeout(() => successAlert.remove(), 2000);
+    }
+});
+
