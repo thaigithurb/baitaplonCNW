@@ -3,7 +3,7 @@
         const categoryFilters = document.querySelectorAll('input[type="checkbox"][id^="men"], input[type="checkbox"][id^="women"], input[type="checkbox"][id^="sports"]');
         const priceFilters = document.querySelectorAll('input[type="checkbox"][id^="price"]');
         const sizeButtons = document.querySelectorAll('.size-buttons button');
-        const applyFiltersBtn = document.querySelector('.filters-sidebar .btn-primary');
+        const applyFiltersBtn = document.querySelector('.filters-sidebar .btn-warning');
         const productCards = document.querySelectorAll('.product-card');
         const searchInput = document.querySelector('.search-form input[name="keyword"]');
         const searchForm = document.querySelector('.search-form');
