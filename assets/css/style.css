@@ -448,3 +448,7 @@ header {
 .cart-icon {
   display: none;
 }
+
+.product-detail .nav-link {
+  color: #FFC107;
+}

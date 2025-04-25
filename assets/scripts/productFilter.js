@@ -157,7 +157,7 @@
             if (totalFilters > 0) {
                 if (!filterCountElement) {
                     filterCountElement = document.createElement('span');
-                    filterCountElement.className = 'filter-count badge bg-primary ms-2';
+                    filterCountElement.className = 'filter-count badge bg-warning ms-2';
                     document.querySelector('.filters-sidebar h4').appendChild(filterCountElement);
                 }
                 filterCountElement.textContent = totalFilters;

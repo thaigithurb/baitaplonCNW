@@ -262,6 +262,9 @@ if (btnDecrease && quantityInput) {
     });
 }
 
+const path = window.location.pathname;
+const itemLink = path.substring(path.lastIndexOf('/') + 1);
+
 // add to cart 
 if (addToCartButton) {
     addToCartButton.addEventListener("click", () => {
@@ -285,6 +288,7 @@ if (addToCartButton) {
         const productPrice = document.querySelector('.product-detail h2').textContent;
         const quantity = quantityInput.value;
         const totalPrice = (parseFloat(productPrice.replace(/[^0-9.]/g, '')) * quantity).toFixed(2);
+        const productImage = document.querySelector('.product-detail img').src;
 
         const product = {
             name: productName,
@@ -292,7 +296,9 @@ if (addToCartButton) {
             size: selectedSize,
             color: selectedColor,
             quantity: quantity,
-            totalPrice: totalPrice
+            totalPrice: totalPrice,
+            itemLink: itemLink,
+            productImage: productImage
         };
 
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -349,12 +355,11 @@ const displayCart = () => {
 
     let cartHTML = '';
     cart.forEach((item, index) => {
-        console.log('Processing item:', item); // Debug log
         cartHTML += `
             <div class="cart-items mb-3">
-                <div class="d-flex align-items-center gap-5">
+                <a href="${item.itemLink}" class="d-flex align-items-center gap-5">
                     <div class="cart-items-img">
-                        <img src="assets/images/classic-sneaker.jpg" alt="${item.name}">
+                        <img src="${item.productImage}" alt="${item.name}">
                     </div>
                     <div class="cart-items-info">
                         <h3 class="cart-items-title">
@@ -366,7 +371,7 @@ const displayCart = () => {
                         <p class="text-secondary">Size: ${item.size}</p>
                         <p class="text-secondary d-flex align-items-center">Color: <span style="display: inline-block; width: 20px; border: 1px solid black; margin-left: 8px; height: 20px; background-color: ${item.color}; border-radius: 50%;"></span></p>
                     </div>
-                </div>
+                </a>
                 <div class="item-actions d-flex align-items-center gap-5">
                     <div class="input-group">
                         <button class="btn btn-outline-secondary btn-decrease" type="button" data-index="${index}">
