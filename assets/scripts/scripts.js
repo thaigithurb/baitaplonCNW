@@ -29,7 +29,7 @@ if (registerForm) {
 
         if (password === confirmPassword) {
             const users = getUsers();
-            
+
             // Check if email exists
             if (users[email]) {
                 alert("Email already registered!");
@@ -41,16 +41,14 @@ if (registerForm) {
                 username: firstName + " " + lastName,
                 email: email,
                 phone: phone,
-                password: password, 
+                password: password,
                 membership: false
             };
 
             localStorage.setItem('users', JSON.stringify(users));
-            
-            // Automatically log in the user after registration
+
             localStorage.setItem('currentUser', email);
-            
-            // Show success message
+
             const successAlert = document.createElement("div");
             successAlert.className = "alert alert-success";
             successAlert.role = "alert";
@@ -62,7 +60,6 @@ if (registerForm) {
             successAlert.style.zIndex = "9999";
             document.body.prepend(successAlert);
 
-            // Redirect after a short delay
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 1000);
@@ -177,7 +174,7 @@ if (newsletterForm) {
         }
 
         const subscribers = getSubscribers();
-        
+
         if (subscribers.includes(email)) {
             const errorAlert = document.createElement("div");
             errorAlert.className = "alert alert-danger";
@@ -288,6 +285,9 @@ if (addToCartButton) {
         const productImageElement = document.querySelector('.product-detail img');
         const productImage = productImageElement ? productImageElement.src : '';
 
+        const path = window.location.pathname;
+        const linkItem = path.substring(path.lastIndexOf('/') + 1);
+
         const product = {
             name: productName,
             price: productPrice,
@@ -295,14 +295,15 @@ if (addToCartButton) {
             color: selectedColor,
             quantity: quantity,
             totalPrice: totalPrice,
-            image: productImage 
+            image: productImage,
+            linkItem: linkItem
         };
 
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        const existingProductIndex = cart.findIndex(item => 
-            item.name === product.name && 
-            item.size === product.size && 
+
+        const existingProductIndex = cart.findIndex(item =>
+            item.name === product.name &&
+            item.size === product.size &&
             item.color === product.color
         );
 
@@ -312,7 +313,7 @@ if (addToCartButton) {
         } else {
             cart.push(product);
         }
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         alert('Product added to cart successfully!');
     });
@@ -352,7 +353,7 @@ const displayCart = () => {
     cart.forEach((item, index) => {
         cartHTML += `
             <div class="cart-items mb-3">
-                <div class="d-flex align-items-center gap-5">
+                <a href="${item.linkItem}" class="d-flex align-items-center gap-5">
                     <div class="cart-items-img">
                         <img src="${item.image}" alt="${item.name}">
                     </div>
@@ -366,7 +367,7 @@ const displayCart = () => {
                         <p>Size: ${item.size}</p>
                         <p class="d-flex align-items-center">Color: <span style="display: inline-block; width: 20px; border: 1px solid black; margin-left: 8px; height: 20px; background-color: ${item.color}; border-radius: 50%;"></span></p>
                     </div>
-                </div>
+                </a>
                 <div class="item-actions d-flex align-items-center gap-5">
                     <div class="input-group">
                         <button class="btn btn-outline-secondary btn-decrease" type="button" data-index="${index}">
