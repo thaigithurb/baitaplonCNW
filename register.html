@@ -1,339 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
 
-  <body>
-    <!-- header -->
-    <header class="header">
-      <div class="container">
-        <div class="wrap">
-          <a href="index.html" class="logo">
-            Shoes<span class="text-warning">Store</span>
-          </a>
-          <nav class="menu">
-            <ul class="menu-list align-items-center">
-              <button
-                type="button"
-                class="btn btn-secondary btn-pro"
-                data-bs-toggle="modal"
-                data-bs-target="#upgradeProModal"
-              >
-                Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
-              </button>
-              <li class="menu-item">
-                <a href="index.html"> Home </a>
-              </li>
-              <li class="menu-item">
-                <a href="products.html">Products</a>
-              </li>
-              <li class="menu-item">
-                <a href="about.html"> About </a>
-              </li>
-              <li class="menu-item">
-                <a href="login.html" id="auth-link"> Login </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
 
-    <div
-      class="modal fade"
-      id="upgradeProModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="upgradeProModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form action="" class="payment-form">
-            <div class="modal-header">
-              <h5 class="modal-title" id="upgradeProModal">
-                Be a membership! <i class="fa-solid fa-crown text-warning"></i>
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="d-flex align-items-center gap-3">
-                <div class="pay-month">$7.50/Month</div>
-                <div class="pay-year">$22.49/Year</div>
-              </div>
-              <div class="membership">
-                <img src="assets/images/membership.jpg" alt="membership" />
-              </div>
-              <div class="d-flex gap-3">
-                <div class="visa-payment mt-3">
-                  <input
-                    type="radio"
-                    id="visa-payment"
-                    name="payment-method"
-                    style="width: 18px; height: 18px"
-                  />
-                  <label for="visa-payment">
-                    <i class="fa-brands fa-cc-visa"></i>
-                  </label>
-                </div>
-                <div class="credit-payment mt-3">
-                  <input
-                    type="radio"
-                    id="credit-payment"
-                    name="payment-method"
-                    style="width: 18px; height: 18px"
-                  />
-                  <label for="credit-payment">
-                    <i class="fa-solid fa-credit-card"></i>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer" style="width: 100%">
-              <button type="submit" class="btn btn-warning w-100">Pay</button>
-            </div>
-          </form>
-        </div>
+<body>
+  <!-- header -->
+  <header class="header">
+    <div class="container">
+      <div class="wrap">
+        <a href="index.html" class="logo">
+          Shoes<span class="text-warning">Store</span>
+        </a>
+        <nav class="menu">
+          <ul class="menu-list align-items-center">
+            <button type="button" class="btn btn-secondary btn-pro" data-bs-toggle="modal"
+              data-bs-target="#upgradeProModal">
+              Upgrade to Pro <i class="fa-solid fa-crown text-warning"></i>
+            </button>
+            <li class="menu-item">
+              <a href="index.html"> Home </a>
+            </li>
+            <li class="menu-item">
+              <a href="products.html">Products</a>
+            </li>
+            <li class="menu-item">
+              <a href="about.html"> About </a>
+            </li>
+            <li class="menu-item">
+              <a href="login.html" id="auth-link"> Login </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-    <!-- end header -->
+  </header>
 
-    <div
-      class="modal fade"
-      id="upgradeProModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="upgradeProModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form action="" class="payment-form">
-            <div class="modal-header">
-              <h5 class="modal-title" id="upgradeProModal">
-                Be a membership! <i class="fa-solid fa-crown text-warning"></i>
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+  <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="upgradeProModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="" class="payment-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="upgradeProModal">
+              Be a membership! <i class="fa-solid fa-crown text-warning"></i>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex align-items-center gap-3">
+              <div class="pay-month">$7.50/Month</div>
+              <div class="pay-year">$22.49/Year</div>
             </div>
-            <div class="modal-body">
-              <div class="d-flex align-items-center gap-3">
-                <div class="pay-month">$7.50/Month</div>
-                <div class="pay-year">$22.49/Year</div>
-              </div>
-              <div class="membership">
-                <img src="assets/images/membership.jpg" alt="membership" />
-              </div>
-              <div class="d-flex gap-3">
-                <div class="visa-payment mt-3">
-                  <input
-                    type="radio"
-                    id="visa-payment"
-                    name="payment-method"
-                    style="width: 18px; height: 18px"
-                  />
-                  <label for="visa-payment">
-                    <i class="fa-brands fa-cc-visa"></i>
-                  </label>
-                </div>
-                <div class="credit-payment mt-3">
-                  <input
-                    type="radio"
-                    id="credit-payment"
-                    name="payment-method"
-                    style="width: 18px; height: 18px"
-                  />
-                  <label for="credit-payment">
-                    <i class="fa-solid fa-credit-card"></i>
-                  </label>
-                </div>
-              </div>
+            <div class="membership">
+              <img src="assets/images/membership.jpg" alt="membership" />
             </div>
-            <div class="modal-footer" style="width: 100%">
-              <button type="submit" class="btn btn-warning w-100">Pay</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- end header -->
-    <section class="register">
-      <div class="container">
-        <form class="shadow-sm p-5 mt-5 mb-5 rounded register-form">
-          <h2 class="text-center mb-4">Create an Account</h2>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="firstName" class="form-label">First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="firstName"
-                name="firstName"
-                required
-              />
-              <div class="valid-feedback">Okay!</div>
-              <div class="invalid-feedback">
-                Please enter a valid first name.
+            <div class="d-flex gap-3">
+              <div class="visa-payment mt-3">
+                <input type="radio" id="visa-payment" name="payment-method" style="width: 18px; height: 18px" />
+                <label for="visa-payment">
+                  <i class="fa-brands fa-cc-visa"></i>
+                </label>
               </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                name="lastName"
-                required
-              />
-              <div class="valid-feedback">Okay!</div>
-              <div class="invalid-feedback">
-                Please enter a valid last name.
+              <div class="credit-payment mt-3">
+                <input type="radio" id="credit-payment" name="payment-method" style="width: 18px; height: 18px" />
+                <label for="credit-payment">
+                  <i class="fa-solid fa-credit-card"></i>
+                </label>
               </div>
             </div>
           </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="email"
-              required
-            />
-            <div class="valid-feedback">Okay!</div>
-            <div class="invalid-feedback">Please enter a valid email.</div>
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
-            <input
-              type="tel"
-              class="form-control"
-              id="phone"
-              name="phone"
-              required
-            />
-            <div class="valid-feedback">Okay!</div>
-            <div class="invalid-feedback">
-              Please enter a valid phone number.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              name="password"
-              required
-            />
-            <div class="valid-feedback">Okay!</div>
-            <div class="invalid-feedback">
-              Password must be at least 8 characters long and include at least
-              one letter and one number.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="confirmPassword" class="form-label"
-              >Confirm Password</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              id="confirmPassword"
-              name="confirmPassword"
-              required
-            />
-            <div class="valid-feedback">Okay!</div>
-            <div class="invalid-feedback">Please confirm your password.</div>
-          </div>
-          <div class="mb-3 form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="terms"
-              name="terms"
-              required
-            />
-            <label class="form-check-label" for="terms">
-              I agree to the Terms and Conditions
-            </label>
-          </div>
-          <button type="submit" class="btn-regist btn btn-warning w-100">
-            Register
-          </button>
-          <div class="text-center mt-3">
-            <hr />
-            Already have an account?
-            <a href="login.html" class="text-decoration-none text-warning">Login here</a>
+          <div class="modal-footer" style="width: 100%">
+            <button type="submit" class="btn btn-warning w-100">Pay</button>
           </div>
         </form>
       </div>
-    </section>
-    <!-- footer  -->
-    <footer class="footer py-5 bg-dark text-light">
-      <div class="container">
+    </div>
+  </div>
+  <!-- end header -->
+
+  <div class="modal fade" id="upgradeProModal" tabindex="-1" role="dialog" aria-labelledby="upgradeProModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="" class="payment-form">
+          <div class="modal-header">
+            <h5 class="modal-title" id="upgradeProModalLabel">
+              Be a membership! <i class="fa-solid fa-crown text-warning"></i>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex align-items-center gap-3">
+              <div class="pay-month">$7.50/Month</div>
+              <div class="pay-year">$22.49/Year</div>
+            </div>
+            <div class="membership mt-3">
+              <img src="assets/images/membership.jpg" alt="membership" class="img-fluid" />
+            </div>
+            <div class="d-flex gap-3 mt-3">
+              <div class="visa-payment">
+                <input type="radio" id="visa-payment" name="payment-method" style="width: 18px; height: 18px" />
+                <label for="visa-payment">
+                  <i class="fa-brands fa-cc-visa"></i>
+                </label>
+              </div>
+              <div class="credit-payment">
+                <input type="radio" id="credit-payment" name="payment-method" style="width: 18px; height: 18px" />
+                <label for="credit-payment">
+                  <i class="fa-solid fa-credit-card"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="width: 100%">
+            <button type="submit" class="btn btn-warning w-100">Pay</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- end header -->
+  <section class="register">
+    <div class="container">
+      <form class="shadow-sm p-5 mt-5 mb-5 rounded register-form">
+        <h2 class="text-center mb-4">Create an Account</h2>
         <div class="row">
-          <div class="col-4">
-            <h5>About ShoeStore</h5>
-            <p>
-              Your premium destination for the latest footwear trends and
-              styles.
-            </p>
+          <div class="col-md-6 mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required />
+            <div class="valid-feedback">Okay!</div>
+            <div class="invalid-feedback">
+              Please enter a valid first name.
+            </div>
           </div>
-          <div class="col-4">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="products.html">Products</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li>
-                <a href="#"><strong>Register</strong></a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-4">
-            <h5>Contact Us</h5>
-            <ul class="list-unstyled">
-              <li><i class="fas fa-phone"></i> +1 234 567 890</li>
-              <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
-              <li>
-                <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
-                City
-              </li>
-            </ul>
+          <div class="col-md-6 mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required />
+            <div class="valid-feedback">Okay!</div>
+            <div class="invalid-feedback">
+              Please enter a valid last name.
+            </div>
           </div>
         </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" required />
+          <div class="valid-feedback">Okay!</div>
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required />
+          <div class="valid-feedback">Okay!</div>
+          <div class="invalid-feedback">
+            Please enter a valid phone number.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" required />
+          <div class="valid-feedback">Okay!</div>
+          <div class="invalid-feedback">
+            Password must be at least 8 characters long and include at least
+            one letter and one number.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required />
+          <div class="valid-feedback">Okay!</div>
+          <div class="invalid-feedback">Please confirm your password.</div>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="terms" name="terms" required />
+          <label class="form-check-label" for="terms">
+            I agree to the Terms and Conditions
+          </label>
+        </div>
+        <button type="submit" class="btn-regist btn btn-warning w-100">
+          Register
+        </button>
+        <div class="text-center mt-3">
+          <hr />
+          Already have an account?
+          <a href="login.html" class="text-decoration-none text-warning">Login here</a>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- footer  -->
+  <footer class="footer py-5 bg-dark text-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <h5>About ShoeStore</h5>
+          <p>
+            Your premium destination for the latest footwear trends and
+            styles.
+          </p>
+        </div>
+        <div class="col-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li>
+              <a href="#"><strong>Register</strong></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h5>Contact Us</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+            <li><i class="fas fa-envelope"></i> info@shoestore.com</li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i> 123 Shoe Street, Fashion
+              City
+            </li>
+          </ul>
+        </div>
       </div>
-    </footer>
-    <!-- end footer  -->
+    </div>
+  </footer>
+  <!-- end footer  -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="assets/scripts/firebaseConfig.js"></script>
-    <script type="module" src="assets/scripts/scripts.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module" src="assets/scripts/scripts.js"></script>
+</body>
+
 </html>

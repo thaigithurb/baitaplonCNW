@@ -29,7 +29,7 @@ if (registerForm) {
 
         if (password === confirmPassword) {
             const users = getUsers();
-
+            
             // Check if email exists
             if (users[email]) {
                 alert("Email already registered!");
@@ -41,14 +41,16 @@ if (registerForm) {
                 username: firstName + " " + lastName,
                 email: email,
                 phone: phone,
-                password: password,
+                password: password, 
                 membership: false
             };
 
             localStorage.setItem('users', JSON.stringify(users));
-
+            
+            // Automatically log in the user after registration
             localStorage.setItem('currentUser', email);
-
+            
+            // Show success message
             const successAlert = document.createElement("div");
             successAlert.className = "alert alert-success";
             successAlert.role = "alert";
@@ -60,6 +62,7 @@ if (registerForm) {
             successAlert.style.zIndex = "9999";
             document.body.prepend(successAlert);
 
+            // Redirect after a short delay
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 1000);
@@ -118,8 +121,8 @@ checkAuthState();
 // select payment pro
 if (paymentForm) {
     paymentForm.querySelectorAll(".pay-month, .pay-year").forEach((element) => {
-        element.addEventListener("click", () => {
 
+        element.addEventListener("click", () => {
             if (element.classList.contains("pay-month")) {
 
                 document.querySelector(".pay-month").classList.add("selected");
@@ -174,7 +177,7 @@ if (newsletterForm) {
         }
 
         const subscribers = getSubscribers();
-
+        
         if (subscribers.includes(email)) {
             const errorAlert = document.createElement("div");
             errorAlert.className = "alert alert-danger";
@@ -282,13 +285,6 @@ if (addToCartButton) {
         const productPrice = document.querySelector('.product-detail h2').textContent;
         const quantity = quantityInput.value;
         const totalPrice = (parseFloat(productPrice.replace(/[^0-9.]/g, '')) * quantity).toFixed(2);
-        const productImageElement = document.querySelector('.product-detail img');
-        const productImage = productImageElement ? productImageElement.src : '';
-
-        const path = window.location.pathname;
-
-        // get product-deital page 
-        const linkItem = path.substring(path.lastIndexOf('/') + 1);
 
         const product = {
             name: productName,
@@ -296,16 +292,14 @@ if (addToCartButton) {
             size: selectedSize,
             color: selectedColor,
             quantity: quantity,
-            totalPrice: totalPrice,
-            image: productImage,
-            linkItem: linkItem
+            totalPrice: totalPrice
         };
 
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        const existingProductIndex = cart.findIndex(item =>
-            item.name === product.name &&
-            item.size === product.size &&
+        
+        const existingProductIndex = cart.findIndex(item => 
+            item.name === product.name && 
+            item.size === product.size && 
             item.color === product.color
         );
 
@@ -315,7 +309,7 @@ if (addToCartButton) {
         } else {
             cart.push(product);
         }
-
+        
         localStorage.setItem('cart', JSON.stringify(cart));
         alert('Product added to cart successfully!');
     });
@@ -328,11 +322,13 @@ const displayCart = () => {
     const shippingElement = document.querySelector('#shipping');
     const totalElement = document.querySelector('#total');
 
+    console.log('Cart List Element:', cartList); // Debug log
 
     if (!cartList) return;
 
     // Get cart from localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log('Cart Data:', cart); // Debug log
 
     if (cart.length === 0) {
         cartList.innerHTML = '<div class="alert alert-info">Your cart is empty</div>';
@@ -353,11 +349,12 @@ const displayCart = () => {
 
     let cartHTML = '';
     cart.forEach((item, index) => {
+        console.log('Processing item:', item); // Debug log
         cartHTML += `
             <div class="cart-items mb-3">
-                <a href="${item.linkItem}" class="d-flex align-items-center gap-5">
+                <div class="d-flex align-items-center gap-5">
                     <div class="cart-items-img">
-                        <img src="${item.image}" alt="${item.name}">
+                        <img src="assets/images/classic-sneaker.jpg" alt="${item.name}">
                     </div>
                     <div class="cart-items-info">
                         <h3 class="cart-items-title">
@@ -366,10 +363,10 @@ const displayCart = () => {
                         <h5 class="price">
                             $${item.totalPrice}
                         </h5>
-                        <p>Size: ${item.size}</p>
-                        <p class="d-flex align-items-center">Color: <span style="display: inline-block; width: 20px; border: 1px solid black; margin-left: 8px; height: 20px; background-color: ${item.color}; border-radius: 50%;"></span></p>
+                        <p class="text-secondary">Size: ${item.size}</p>
+                        <p class="text-secondary d-flex align-items-center">Color: <span style="display: inline-block; width: 20px; border: 1px solid black; margin-left: 8px; height: 20px; background-color: ${item.color}; border-radius: 50%;"></span></p>
                     </div>
-                </a>
+                </div>
                 <div class="item-actions d-flex align-items-center gap-5">
                     <div class="input-group">
                         <button class="btn btn-outline-secondary btn-decrease" type="button" data-index="${index}">
@@ -386,8 +383,10 @@ const displayCart = () => {
         `;
     });
 
+    console.log('Generated HTML:', cartHTML); // Debug log
     cartList.innerHTML = cartHTML;
 
+    // Add event listeners for quantity buttons
     document.querySelectorAll('.btn-decrease').forEach(button => {
         button.addEventListener('click', (e) => {
             const index = e.target.dataset.index;
@@ -402,6 +401,7 @@ const displayCart = () => {
         });
     });
 
+    // Add event listeners for remove buttons
     document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', (e) => {
             const index = e.target.dataset.index;
@@ -434,42 +434,9 @@ const removeFromCart = (index) => {
 
 // Call displayCart when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Page loaded, checking for cart list...'); 
     if (document.querySelector('.cart-list')) {
+        console.log('Cart list found, displaying cart...'); // Debug log
         displayCart();
     }
 });
-
-// checkout 
-document.querySelector("#checkout-btn").addEventListener("click", () => {
-    // Get cart from localStorage
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart.length > 0) {
-        cart.length = 0;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        displayCart();
-        const successAlert = document.createElement("div");
-        successAlert.className = "alert alert-success";
-        successAlert.role = "alert";
-        successAlert.textContent = "Thank you for your purchase! Your cart is now empty.";
-        successAlert.style.position = "fixed";
-        successAlert.style.top = "0";
-        successAlert.style.left = "0";
-        successAlert.style.width = "100%";
-        successAlert.style.zIndex = "9999";
-        document.body.prepend(successAlert);
-        setTimeout(() => successAlert.remove(), 2000);
-    } else {
-        const successAlert = document.createElement("div");
-        successAlert.className = "alert alert-info";
-        successAlert.role = "alert";
-        successAlert.textContent = "Your cart is already empty.";
-        successAlert.style.position = "fixed";
-        successAlert.style.top = "0";
-        successAlert.style.left = "0";
-        successAlert.style.width = "100%";
-        successAlert.style.zIndex = "9999";
-        document.body.prepend(successAlert);
-        setTimeout(() => successAlert.remove(), 2000);
-    }
-});
-
