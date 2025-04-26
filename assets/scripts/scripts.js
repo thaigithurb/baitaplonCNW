@@ -248,15 +248,15 @@ if (colorButtons.length > 0) {
 
 if (btnIncrease && quantityInput) {
     btnIncrease.addEventListener("click", () => {
-        let currentValue = parseInt(quantityInput.value) || 0;
+        let currentValue = parseInt(quantityInput.value);
         quantityInput.value = currentValue + 1;
     });
 }
 
 if (btnDecrease && quantityInput) {
     btnDecrease.addEventListener("click", () => {
-        let currentValue = parseInt(quantityInput.value) || 0;
-        if (currentValue > 0) {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
             quantityInput.value = currentValue - 1;
         }
     });
