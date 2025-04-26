@@ -354,7 +354,7 @@ const displayCart = () => {
     cart.forEach((item, index) => {
         cartHTML += `
             <div class="cart-items mb-3">
-                <a href="${item.fileName}" class="d-flex align-items-center gap-5">
+                <a href="${item.itemLink}" class="d-flex align-items-center gap-5">
                     <div class="cart-items-img">
                         <img src="${item.productImage}" alt="${item.name}">
                     </div>
