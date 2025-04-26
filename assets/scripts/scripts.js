@@ -296,7 +296,7 @@ if (addToCartButton) {
             color: selectedColor,
             quantity: quantity,
             totalPrice: totalPrice,
-            itemLink: itemLink,
+            itemLink: fileName,
             productImage: productImage
         };
 
