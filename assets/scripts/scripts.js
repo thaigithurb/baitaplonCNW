@@ -11,6 +11,8 @@ const btnDecrease = document.querySelector(".btn-decrease");
 const sizeButtons = document.querySelectorAll('.size-buttons button');
 const colorButtons = document.querySelectorAll('.color-options button');
 const addToCartButton = document.querySelector(".btn-add-to-cart");
+const path = window.location.pathname;
+const fileName = path.substring(path.lastIndexOf('/') + 1);
 
 
 const getUsers = () => JSON.parse(localStorage.getItem('users')) || {};
@@ -30,13 +32,10 @@ if (registerForm) {
         if (password === confirmPassword) {
             const users = getUsers();
             
-            // Check if email exists
             if (users[email]) {
                 alert("Email already registered!");
                 return;
             }
-
-            // Create new user
             users[email] = {
                 username: firstName + " " + lastName,
                 email: email,
@@ -47,10 +46,8 @@ if (registerForm) {
 
             localStorage.setItem('users', JSON.stringify(users));
             
-            // Automatically log in the user after registration
             localStorage.setItem('currentUser', email);
             
-            // Show success message
             const successAlert = document.createElement("div");
             successAlert.className = "alert alert-success";
             successAlert.role = "alert";
@@ -62,7 +59,6 @@ if (registerForm) {
             successAlert.style.zIndex = "9999";
             document.body.prepend(successAlert);
 
-            // Redirect after a short delay
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 1000);
@@ -108,6 +104,10 @@ const checkAuthState = () => {
                 logoutAlert.remove();
                 window.location.reload();
             }, 1000);
+
+            if (fileName === "cart.html") {
+                window.location.href = "index.html";
+            }
         });
     } else {
         cartIcon.style.display = "none";
@@ -262,8 +262,7 @@ if (btnDecrease && quantityInput) {
     });
 }
 
-const path = window.location.pathname;
-const itemLink = path.substring(path.lastIndexOf('/') + 1);
+
 
 // add to cart 
 if (addToCartButton) {
@@ -328,13 +327,11 @@ const displayCart = () => {
     const shippingElement = document.querySelector('#shipping');
     const totalElement = document.querySelector('#total');
 
-    console.log('Cart List Element:', cartList); // Debug log
 
     if (!cartList) return;
 
     // Get cart from localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    console.log('Cart Data:', cart); // Debug log
 
     if (cart.length === 0) {
         cartList.innerHTML = '<div class="alert alert-info">Your cart is empty</div>';
@@ -357,7 +354,7 @@ const displayCart = () => {
     cart.forEach((item, index) => {
         cartHTML += `
             <div class="cart-items mb-3">
-                <a href="${item.itemLink}" class="d-flex align-items-center gap-5">
+                <a href="${item.fileName}" class="d-flex align-items-center gap-5">
                     <div class="cart-items-img">
                         <img src="${item.productImage}" alt="${item.name}">
                     </div>
@@ -388,10 +385,8 @@ const displayCart = () => {
         `;
     });
 
-    console.log('Generated HTML:', cartHTML); // Debug log
     cartList.innerHTML = cartHTML;
 
-    // Add event listeners for quantity buttons
     document.querySelectorAll('.btn-decrease').forEach(button => {
         button.addEventListener('click', (e) => {
             const index = e.target.dataset.index;
@@ -406,7 +401,6 @@ const displayCart = () => {
         });
     });
 
-    // Add event listeners for remove buttons
     document.querySelectorAll('.remove-item').forEach(button => {
         button.addEventListener('click', (e) => {
             const index = e.target.dataset.index;
@@ -437,11 +431,42 @@ const removeFromCart = (index) => {
     displayCart();
 };
 
-// Call displayCart when page loads
+// render when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Page loaded, checking for cart list...'); 
     if (document.querySelector('.cart-list')) {
-        console.log('Cart list found, displaying cart...'); // Debug log
         displayCart();
+    }
+});
+
+// checkout 
+document.querySelector("#checkout-btn").addEventListener("click", () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length > 0) {
+        cart.length = 0;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        displayCart();
+        const successAlert = document.createElement("div");
+        successAlert.className = "alert alert-success";
+        successAlert.role = "alert";
+        successAlert.textContent = "Thank you for your purchase! Your cart is now empty.";
+        successAlert.style.position = "fixed";
+        successAlert.style.top = "0";
+        successAlert.style.left = "0";
+        successAlert.style.width = "100%";
+        successAlert.style.zIndex = "9999";
+        document.body.prepend(successAlert);
+        setTimeout(() => successAlert.remove(), 1000);
+    } else {
+        const successAlert = document.createElement("div");
+        successAlert.className = "alert alert-info";
+        successAlert.role = "alert";
+        successAlert.textContent = "Your cart is already empty.";
+        successAlert.style.position = "fixed";
+        successAlert.style.top = "0";
+        successAlert.style.left = "0";
+        successAlert.style.width = "100%";
+        successAlert.style.zIndex = "9999";
+        document.body.prepend(successAlert);
+        setTimeout(() => successAlert.remove(), 1000);
     }
 });

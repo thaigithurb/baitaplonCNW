@@ -96,8 +96,6 @@
                     shouldShow = shouldShow && priceMatch;
                 }
 
-                // collected size 
-                console.log(sizeButtons);
                 selectedFilters.sizes = Array.from(sizeButtons)
                     .filter(button => button.classList.contains('active'))
                     .map(button => button.textContent.trim());
